@@ -176,6 +176,69 @@ main:
     movz    x6, 0x00, lsl 16	 // color
     movk    x6, 0x1076, lsl 0	 // color
     bl      draw_rectangle
+    
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Dibuja triángulo
+    mov     x0, x20		  // framebuffer base
+    mov     x1, #SCREEN_WIDTH     // Ancho de pantalla
+    mov     x2, #320		  // x0: columna del vértice superior del triángulo
+    mov     x3, #242	          // y0: fila del vértice superior
+    mov     x4, #480		  // Altura del triángulo (en píxeles)
+    movz    x5, 0x26, lsl 16      // Color 
+    movk    x5, 0x2525, lsl 0     // Color
+    bl      draw_triangle
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Dibuja triángulo
+    mov     x0, x20			// framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #280		        // x0: columna del vértice superior del triángulo
+    mov     x3, #240			// y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0x26, lsl 16		// Color 
+    movk    x5, 0x2525, lsl 0		// Color
+    bl      draw_triangle
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Dibuja triángulo
+    mov     x0, x20			// framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #310			// x0: columna del vértice superior del triángulo
+    mov     x3, #241     	        // y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0xff, lsl 16		// Color 
+    movk    x5, 0xffff, lsl 0		// Color
+    bl      draw_triangle
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Dibuja triángulo
+    mov     x0, x20		        // framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #290			// x0: columna del vértice superior del triángulo
+    mov     x3, #241	                // y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0xff, lsl 16		// Color 
+    movk    x5, 0xffff, lsl 0		// Color
+    bl      draw_triangle
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// Dibuja triángulo
+    mov     x0, x20		        // framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #300			    // x0: columna del vértice superior del triángulo
+    mov     x3, #238				// y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0x26, lsl 16		// Color 
+    movk    x5, 0x2525, lsl 0		// Color
+    bl      draw_triangle
+
 
 //-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
     // Dibuja triángulo
