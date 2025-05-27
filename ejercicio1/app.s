@@ -282,7 +282,72 @@ main:
     movz    x5, 0xFF, lsl 16		 // color
     movk    x5, 0xFFFF, lsl 0		 // color
     bl      draw_circle
+//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
 
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #140             // x = columna inicial
+    mov     x3, #180             // y = fila inicial
+    mov     x4, #15              // ancho del rectangulo
+    mov     x5, #180          	 // alto del rectangulo
+    movz    x6, 0x56, lsl 16	 // color
+    movk    x6, 0x5757, lsl 0	 // color
+    bl      draw_rectangle
+
+//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
+
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #140             // x = columna inicial
+    mov     x3, #180             // y = fila inicial
+    mov     x4, #300              // ancho del rectangulo
+    mov     x5, #15         	 // alto del rectangulo
+    movz    x6, 0x56, lsl 16	 // color
+    movk    x6, 0x5757, lsl 0	 // color
+    bl      draw_rectangle
+
+//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
+
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #440            // x = columna inicial
+    mov     x3, #180             // y = fila inicial
+    mov     x4, #15              // ancho del rectangulo
+    mov     x5, #180          	 // alto del rectangulo
+    movz    x6, 0x56, lsl 16	 // color
+    movk    x6, 0x5757, lsl 0	 // color
+    bl      draw_rectangle
+
+
+//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
+  
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #196         	 // x = columna inicial
+    mov     x3, #165         	 // y = fila inicial
+    mov     x4, #208             // ancho del rectangulo
+    mov     x5, #75       	     // alto del rectangulo
+    movz    x6, 0xff, lsl 16	 // color
+    movk    x6, 0xffff, lsl 0	 // color
+    bl      draw_rectangle
+
+
+//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
+  
+    // Dibuja rectángulo
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #200          	   // x = columna inicial
+    mov     x3, #168              // y = fila inicial
+    mov     x4, #200               // ancho del rectangulo
+    mov     x5, #70     	      // alto del rectangulo
+    movz    x6, 0x12, lsl 16	  // color
+    movk    x6, 0x5d28, lsl 0	  // color
+    bl      draw_rectangle
 
 	// Ejemplo de uso de gpios
 	mov x9, GPIO_BASE
