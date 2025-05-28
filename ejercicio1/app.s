@@ -21,7 +21,7 @@ loop0:
 	sub 	x2,x2,1	   // Decrementar contador Y
 	cbnz 	x2,loop1   // Si no es la última fila, salto
 ret_fb:
-	ret
+	br x30
 //----------------------------------RECTANGULO-----------------------------
 draw_rectangle:
     // x0 = fb, x1 = screen_width, x2 = x, x3 = y, x4 = w, x5 = h, x6 = color
@@ -45,7 +45,7 @@ col_loop_r:
     cmp     x10, x4				// terminamos con las columnas?
     b.ge    fin_fila_r			// si columna actual es >= que ancho del rectangulo, salta a fin_fila_r
 
-    str     w6, [x9]			// pinta pixel
+    stur     w6, [x9]			// pinta pixel
     add     x9, x9, #4			// avanza puntero
     add     x10, x10, #1		// aumenta en 1 el valor de columna actual (x10)
     b       col_loop_r			// salto incondicional a col_loop_r
@@ -55,7 +55,7 @@ fin_fila_r:
     b       fila_loop_r			// salto incondicional a fila_loop_r
 
 ret_rectangle:
-    ret
+    br x30
 
 
 //----------------------------------TRIANGULO-----------------------------
@@ -89,7 +89,7 @@ pix_loop_t:
     cmp     x12, x7
     b.ge    fin_fila_t
 
-    str     w5, [x11]			 // pinta pixel
+    stur     w5, [x11]			 // pinta pixel
     add     x11, x11, #4		 // avanzar al siguiente píxel
     add     x12, x12, #1		 // aumenta en 1 el valor de x12
     b       pix_loop_t			 // salto incondicional a pix_loop_t
@@ -99,7 +99,7 @@ fin_fila_t:
     b       fila_loop_t			 // salto incondicional a fila_loop_t
 
 ret_triangle:
-    ret
+    br x30
 
 //----------------------------------CIRCULO--------------------------
 draw_circle:
@@ -141,7 +141,7 @@ x_loop_c:
     add     x18, x18, x12
     lsl     x18, x18, #2
     add     x18, x0, x18
-    str     w5, [x18]			 // pinta pixel
+    stur     w5, [x18]			 // pinta pixel
 
 skip_c:
     add     x12, x12, #1		 // incrementa x12 en 1
@@ -152,11 +152,11 @@ next_y_c:
     b       y_loop_c			 // salto incondicional a y_loop_c
 
 ret_circle:
-    ret
+    br x30
 
 
 main:
-//--------------------------------SUELO--------------------------------------------
+//--------------------------------SUELO VERDE--------------------------------------------
 	// x0 contiene la direccion base del framebuffer
  	mov 	x20, x0				 // Guarda la dirección base del framebuffer en x20
 
@@ -164,7 +164,7 @@ main:
 	movk 	x10, 0x5405, lsl 00
 	bl 		fill_framebuffer
 
-//-----------------RECTANGULO CIELO-----------------------------------------
+//-----------------RECTANGULO CIELO AZUL-----------------------------------------
  
     // Dibuja rectángulo
     mov     x0, x20              // framebuffer base
@@ -227,7 +227,7 @@ main:
     bl      draw_triangle
 
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Dibuja triángulo
     mov     x0, x20		        // framebuffer base
@@ -272,7 +272,7 @@ main:
     movk    x5, 0x7506, lsl 0		// Color
     bl      draw_triangle
 
-//--------------------------CIRCULO LUNA---------------------------------------
+//--------------------------CIRCULO BLANCO LUNA---------------------------------------
     // Dibuja círculo	
     mov     x0, x20					 // framebuffer base
     mov     x1, #SCREEN_WIDTH		 // Ancho de pantalla
@@ -283,7 +283,7 @@ main:
     movk    x5, 0xFFFF, lsl 0		 // color
     bl      draw_circle
 
-//************ Estrellas *************
+//------------------------------ESTRELLAS BLANCAS-----------------------------------------
     // Dibuja triángulo
     mov     x0, x20					// framebuffer base
     mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
