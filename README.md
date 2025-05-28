@@ -1,4 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/VsnOOl0p)
 # Lab Org. y Arq. de Computadoras
 
 * Configuración de pantalla: `640x480` pixels, formato `ARGB` 32 bits.
@@ -30,13 +29,6 @@ Esto construirá el código y ejecutará qemu para su emulación.
 
 Si qemu se queja con un error parecido a `qemu-system-aarch64: unsupported machine type`, prueben cambiar `raspi3` por `raspi3b` en la receta `runQEMU` del **Makefile** (línea 23 si no lo cambiaron).
 
-**Para correr el gpio manager**
-
-```bash
-$ make runGPIOM
-```
-
-Ejecutar *luego* de haber corrido qemu.
 
 ## Como correr qemu y gcc usando Docker containers
 
@@ -52,13 +44,11 @@ docker build -t famaf/rpi-qemu .
  * Para arrancarlo
 ```bash
 xhost +
-cd rpi-asm-framebuffer
 docker run -dt --name rpi-qemu --rm -v $(pwd):/local --privileged -e "DISPLAY=${DISPLAY:-:0.0}" -v /tmp/.X11-unix:/tmp/.X11-unix -v "$HOME/.Xauthority:/root/.Xauthority:rw" famaf/rpi-qemu
 ```
- * Para correr el emulador y el simulador de I/O
+ * Para correr el emulador
 ```bash
 docker exec -d rpi-qemu make runQEMU
-docker exec -it rpi-qemu make runGPIOM
 ```
  * Para terminar el container
 ```bash
@@ -68,24 +58,7 @@ docker kill rpi-qemu
 ### MacOS
 En MacOS primero tienen que [instalar un X server](https://medium.com/@mreichelt/how-to-show-x11-windows-within-docker-on-mac-50759f4b65cb) (i.e. XQuartz)
  * Para construir el container hacer
-```bash
-docker build -t famaf/rpi-qemu .
-```
- * Para arrancarlo
-```bash
-xhost +
-cd rpi-asm-framebuffer
-docker run -dt --name rpi-qemu --rm -v $(pwd):/local --privileged -e "DISPLAY=host.docker.internal:0" -v /tmp/.X11-unix:/tmp/.X11-unix -v "$HOME/.Xauthority:/root/.Xauthority:rw" famaf/rpi-qemu
-```
- * Para correr el emulador y el simulador de I/O
-```bash
-docker exec -d rpi-qemu make runQEMU
-docker exec -it rpi-qemu make runGPIOM
-```
- * Para terminar el container
-```bash
-docker kill rpi-qemu
-```
+
 ----------------------------------
 ### Otros comandos utiles
 ```bash
