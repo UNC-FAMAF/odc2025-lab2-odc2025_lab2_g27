@@ -17287,7 +17287,7 @@ Disassembly of section .debug_info:
   44:	00c80000 	.inst	0x00c80000 ; undefined
   48:	00000009 	udf	#9
   4c:	00460000 	.inst	0x00460000 ; undefined
-  50:	00060000 	.inst	0x00060000 ; undefined
+  50:	004e0000 	.inst	0x004e0000 ; undefined
   54:	003a0000 	.inst	0x003a0000 ; NYI
   58:	80010000 	.inst	0x80010000 ; undefined
 
@@ -17347,5 +17347,23 @@ Disassembly of section .debug_str:
   40:	342e3220 	cbz	w0, 5c684 <Set_Palette+0x14679>
   44:	74730032 	.inst	0x74730032 ; undefined
   48:	2e747261 	uabdl	v1.4s, v19.4h, v20.4h
-  4c:	Address 0x4c is out of bounds.
-
+  4c:	682f0073 	.inst	0x682f0073 ; undefined
+  50:	2f656d6f 	.inst	0x2f656d6f ; undefined
+  54:	696c756a 	ldpsw	x10, x29, [x11, #-160]
+  58:	442f6e61 	.inst	0x442f6e61 ; undefined
+  5c:	746b7365 	.inst	0x746b7365 ; undefined
+  60:	432f706f 	.inst	0x432f706f ; undefined
+  64:	656e6f6c 	fnmls	z12.h, p3/m, z27.h, z14.h
+  68:	5f38325f 	.inst	0x5f38325f ; undefined
+  6c:	2f79616d 	umlsl	v13.4s, v11.4h, v9.h[3]
+  70:	3263646f 	.inst	0x3263646f ; undefined
+  74:	2d353230 	stp	s16, s12, [x17, #-88]
+  78:	3262616c 	.inst	0x3262616c ; undefined
+  7c:	63646f2d 	.inst	0x63646f2d ; undefined
+  80:	35323032 	cbnz	w18, 64684 <Set_Palette+0x1c679>
+  84:	62616c5f 	.inst	0x62616c5f ; undefined
+  88:	32675f32 	.inst	0x32675f32 ; undefined
+  8c:	6a652f37 	bics	w23, w25, w5, lsr #11
+  90:	69637265 	ldpsw	x5, x28, [x19, #-232]
+  94:	316f6963 	adds	w3, w11, #0xbda, lsl #12
+	...
