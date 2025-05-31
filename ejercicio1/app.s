@@ -8,7 +8,8 @@
 
 	.globl main
 
-//---------------------------------FRAMEBUFFER---------------------------
+//---------------------------------FUNCION PINTAR FRAMEBUFFER---------------------------
+//Pinta Todo el framebuffer con un color particular.
 fill_framebuffer:
 	mov 	x2, SCREEN_HEIGH         // Y Size
 loop1:
@@ -22,7 +23,9 @@ loop0:
 	cbnz 	x2,loop1   // Si no es la última fila, salto
 ret_fb:
 	br x30
-//----------------------------------RECTANGULO-----------------------------
+    
+//----------------------------------FUNCION PINTAR RECTANGULO-----------------------------
+//Pinta un rectangulo dentro del framebuffer. Se puede elegir su alto, ancho y el color.
 draw_rectangle:
     // x0 = fb, x1 = screen_width, x2 = x, x3 = y, x4 = w, x5 = h, x6 = color
 
@@ -57,8 +60,8 @@ fin_fila_r:
 ret_rectangle:
     br x30
 
-
-//----------------------------------TRIANGULO-----------------------------
+//----------------------------------FUNCION PINTAR TRIANGULO-----------------------------
+//Pinta un triangulo dentro del framebuffer. Se puede elegir la posicion del vertice superior, el alto de la figura y el color.
 draw_triangle:
     // x0 = fb, x1 = screen_width, x2 = x0, x3 = y0, x4 = altura, x5 = color
 
@@ -101,7 +104,8 @@ fin_fila_t:
 ret_triangle:
     br x30
 
-//----------------------------------CIRCULO--------------------------
+//----------------------------------FUNCION PINAR CIRCULO--------------------------
+//Pinta un circulo dentro del framebuffer. Se puede elegir la posicion del centro, el radio de la figura y el color.
 draw_circle:
     // x0 = fb, x1 = screen_width, x2 = cx, x3 = cy, x4 = r, x5 = color
 
@@ -153,7 +157,6 @@ next_y_c:
 
 ret_circle:
     br x30
-
 
 main:
 //--------------------------------SUELO VERDE--------------------------------------------
@@ -226,7 +229,6 @@ main:
     movk    x5, 0xffff, lsl 0		// Color
     bl      draw_triangle
 
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Dibuja triángulo
@@ -238,7 +240,6 @@ main:
     movz    x5, 0x26, lsl 16		// Color 
     movk    x5, 0x2525, lsl 0		// Color
     bl      draw_triangle
-
 
 //-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
     // Dibuja triángulo
@@ -261,6 +262,7 @@ main:
     movz    x5, 0x69, lsl 16		// Color 
     movk    x5, 0x4720, lsl 0		// Color
     bl      draw_triangle
+
 //-------------------TRIANGULO MONTANA DER-------------------------------------
     // Dibuja triángulo
     mov     x0, x20					// framebuffer base
@@ -285,30 +287,19 @@ main:
 
 //------------------------------ESTRELLAS BLANCAS-----------------------------------------
     
-    //Nota sobre los números : el número al lado de la explicacion de lo que hace el codigo corresponde al orden de las estrellas contadas de izquierda a derecha , esto se hizo para hubicarlas de forma mas sencilla en el QEMU 
-    
+    //Nota sobre los números : el número al lado de la explicacion de lo que hace el codigo corresponde al orden de las estrellas contadas de izquierda a derecha, esto se hizo para ubicarlas de forma mas sencilla en el QEMU 
     
     // Dibuja triangulo 1
     mov     x0, x20                     // framebuffer base
     mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
-    mov     x2, #2                      // coordenada x
+    mov     x2, #10                      // coordenada x
     mov     x3, #10                     // coordenada y
-    mov     x4, #2                      // tamañio
+    mov     x4, #2                      // tamaño
     movz    x5, 0xff, lsl 16            // color
     movk    x5, 0xffff, lsl 0           // color
     bl      draw_triangle               // dibuja
     
     // Dibuja circulo 2
-    mov     x0, x20		        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #20		        // coordenada x (centro x)
-    mov     x3, #20			// coordenada y (centro y)
-    mov     x4, #1		        // radio 
-    movz    x5, 0xFF, lsl 16		// color
-    movk    x5, 0xFFFF, lsl 0		// color
-    bl      draw_circle                 // dibuja
-    
-    // Dibuja circulo 3
     mov     x0, x20                     // framebuffer base
     mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
     mov     x2, #45                     // coordenada x (centro x)
@@ -318,7 +309,7 @@ main:
     movk    x5, 0xFFFF, lsl 0           // color
     bl      draw_circle                 // dibuja 
     
-    //Dibuja Circulo 4
+    //Dibuja Circulo 3
     mov     x0, x20                     // framebuffer base
     mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
     mov     x2, #75                     // coordenada x (centro x)
@@ -328,87 +319,47 @@ main:
     movk    x5, 0xFFFF, lsl 0           // color
     bl      draw_circle                 // dibuja 
     
+    // Dibuja triangulo 4
+    mov     x0, x20                     // framebuffer base 
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #120                    // coordenada x
+    mov     x3, #70                     // coordenada y
+    mov     x4, #2                      // tamaño
+    movz    x5, 0xff, lsl 16            // color
+    movk    x5, 0xffff, lsl 0           // color
+    bl      draw_triangle               // dibuja
+    
     // Dibuja triangulo 5
     mov     x0, x20                     // framebuffer base
     mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
-    mov     x2, #80                     // coordenada x
-    mov     x3, #50                     // coordenada y
-    mov     x4, #2                      // tamañio
+    mov     x2, #200                    // coordenada x
+    mov     x3, #40                     // coordenada y
+    mov     x4, #2                      // tamaño
     movz    x5, 0xff, lsl 16            // color
     movk    x5, 0xffff, lsl 0           // color
     bl      draw_triangle               // dibuja
     
     // Dibuja triangulo 6
-    mov     x0, x20                     // framebuffer base 
-    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
-    mov     x2, #120                    // coordenada x
-    mov     x3, #30                     // coordenada y
-    mov     x4, #2                      // tamañio
-    movz    x5, 0xff, lsl 16            // color
-    movk    x5, 0xffff, lsl 0           // color
-    bl      draw_triangle               // dibuja
-    
-    // Dibuja circulo 7
-    mov     x0, x20                     // framebuffer base
-    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
-    mov     x2, #150                    // coordenada x (centro x)
-    mov     x3, #90                     // coordenada y (centro y)
-    mov     x4, #1                      // radio 
-    movz    x5, 0xFF, lsl 16            // color
-    movk    x5, 0xFFFF, lsl 0           // color
-    bl      draw_circle                 // dibuja 
-    
-    // Dibuja triangulo 8
-    mov     x0, x20                     // framebuffer base
-    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
-    mov     x2, #200                    // coordenada x
-    mov     x3, #40                     // coordenada y
-    mov     x4, #2                      // tamañio
-    movz    x5, 0xff, lsl 16            // color
-    movk    x5, 0xffff, lsl 0           // color
-    bl      draw_triangle               // dibuja
-    
-    //Dibuja circulo 9
-    mov     x0, x20                     // framebuffer base
-    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
-    mov     x2, #220                    // coordenada x (centro x)
-    mov     x3, #10                     // coordenada y (centro y)
-    mov     x4, #1                      // radio 
-    movz    x5, 0xFF, lsl 16            // color
-    movk    x5, 0xFFFF, lsl 0           // color
-    bl      draw_circle                 // dibuja
-    
-    // Dibuja triangulo 10
     mov     x0, x20                      // framebuffer base
     mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
     mov     x2, #250                     // coordenada x
     mov     x3, #60                      // coordenada y
-    mov     x4, #2                       // tamañio
+    mov     x4, #2                       // tamaño
     movz    x5, 0xff, lsl 16             // color
     movk    x5, 0xffff, lsl 0            // color
     bl      draw_triangle                // dibuja
     
-    //Dibuja circulo 11
-    mov     x0, x20                      // framebuffer base
-    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
-    mov     x2, #300                     // coordenada x (centro x)
-    mov     x3, #115                     // coordenada y (centro y)
-    mov     x4, #1                       // radio 
-    movz    x5, 0xFF, lsl 16             // color
-    movk    x5, 0xFFFF, lsl 0            // color
-    bl      draw_circle                  // dibuja
-    
-    // Dibuja triangulo 12
+    // Dibuja triangulo 7
     mov     x0, x20                      // framebuffer base
     mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
     mov     x2, #320                     // coordenada x
     mov     x3, #27                      // coordenada y
-    mov     x4, #2                       // tamañio
+    mov     x4, #2                       // tamaño
     movz    x5, 0xff, lsl 16             // color
     movk    x5, 0xffff, lsl 0            // color
     bl      draw_triangle                // dibuja
     
-    // Dibuja Circulo 13 
+    // Dibuja Circulo 8 
     mov     x0, x20                      // framebuffer base
     mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
     mov     x2, #360                     // coordenada x (centro x)
@@ -417,48 +368,28 @@ main:
     movz    x5, 0xFF, lsl 16             // color
     movk    x5, 0xFFFF, lsl 0            // color
     bl      draw_circle                  // dibuja
-    
-    //Dibuja triangulo 14
-    mov     x0, x20                      // framebuffer base
-    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
-    mov     x2, #390                     // coordenada x
-    mov     x3, #45                      // coordenada y
-    mov     x4, #2                       // tamañio
-    movz    x5, 0xff, lsl 16             // color
-    movk    x5, 0xffff, lsl 0            // color
+
+    // Dibuja triángulo 9
+    mov     x0, x20			             // framebuffer base
+    mov     x1, #SCREEN_WIDTH		     // Ancho de pantalla
+    mov     x2, #400		             // x0: columna del vértice superior del triángulo
+    mov     x3, #10		                 // y0: fila del vértice superior
+    mov     x4, #2			             // Altura del triángulo (en píxeles)
+    movz    x5, 0xff, lsl 16		     // Color 
+    movk    x5, 0xffff, lsl 0		     // Color
     bl      draw_triangle                // dibuja
     
-    // Dibuja triángulo 15
-    mov     x0, x20			 // framebuffer base
-    mov     x1, #SCREEN_WIDTH		 // Ancho de pantalla
-    mov     x2, #400		         // x0: columna del vértice superior del triángulo
-    mov     x3, #10		         // y0: fila del vértice superior
-    mov     x4, #2			 // Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		 // Color 
-    movk    x5, 0xffff, lsl 0		 // Color
-    bl      draw_triangle                // dibuja
-    
-    // Dibuja Circulo 16
-    mov     x0, x20                      // framebuffer base
-    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
-    mov     x2, #410                     // coordenada x (centro x)
-    mov     x3, #80                      // coordenada y (centro y)
-    mov     x4, #1                       // radio 
-    movz    x5, 0xFF, lsl 16             // color
-    movk    x5, 0xFFFF, lsl 0            // color
-    bl      draw_circle                  // dibuja
-    
-    //Dibuja triangulo 17
+    //Dibuja triangulo 10
     mov     x0, x20                      // framebuffer base
     mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
     mov     x2, #450                     // coordenada x
     mov     x3, #60                      // coordenada y
-    mov     x4, #2                       // tamañio
+    mov     x4, #2                       // tamaño
     movz    x5, 0xff, lsl 16             // color
     movk    x5, 0xffff, lsl 0            // color
     bl      draw_triangle                // dibuja
     
-    // Dibuja circulo 18
+    // Dibuja circulo 11
     mov     x0, x20                      // framebuffer base
     mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
     mov     x2, #490                     // coordenada x (centro x)
@@ -467,18 +398,8 @@ main:
     movz    x5, 0xFF, lsl 16             // color
     movk    x5, 0xFFFF, lsl 0            // color
     bl      draw_circle                  // dibuja
-
-    // Dibuja triangulo 19
-    mov     x0, x20                      // framebuffer base
-    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
-    mov     x2, #500                     // coordenada x
-    mov     x3, #80                      // coordenada y
-    mov     x4, #2                       // tamañio
-    movz    x5, 0xff, lsl 16             // color
-    movk    x5, 0xffff, lsl 0            // color
-    bl      draw_triangle                // dibuja
     
-    // Dibuja circulo 20
+    // Dibuja circulo 12
     mov     x0, x20                       // framebuffer base
     mov     x1, #SCREEN_WIDTH             // Ancho de pantalla
     mov     x2, #520                      // coordenada x (centro x)
@@ -488,25 +409,15 @@ main:
     movk    x5, 0xFFFF, lsl 0             // color
     bl      draw_circle                   // dibuja
 
-    // Dibuja triangulo 21
+    // Dibuja triangulo 13
     mov     x0, x20                       // framebuffer base
     mov     x1, #SCREEN_WIDTH             // Ancho de pantalla
     mov     x2, #570                      // coordenada x
     mov     x3, #80                       // coordenada y
-    mov     x4, #2                        // tamañio    
+    mov     x4, #2                        // tamaño    
     movz    x5, 0xff, lsl 16              // color
     movk    x5, 0xffff, lsl 0             // color
     bl      draw_triangle                 // dibuja
-    
-    //Dibuja circulo 22 
-    mov     x0, x20                       // framebuffer base
-    mov     x1, #SCREEN_WIDTH             // Ancho de pantalla
-    mov     x2, #580                      // coordenada x (centro x)
-    mov     x3, #15                       // coordenada y (centro y)
-    mov     x4, #1                        // radio 
-    movz    x5, 0xFF, lsl 16              // color
-    movk    x5, 0xFFFF, lsl 0             // color
-    bl      draw_circle                   // dibuja
 
 //~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
 
@@ -547,7 +458,6 @@ main:
     movk    x6, 0x5757, lsl 0	 // color
     bl      draw_rectangle
 
-
 //~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
   
     // Dibuja rectángulo
@@ -560,7 +470,6 @@ main:
     movz    x6, 0xff, lsl 16	 // color
     movk    x6, 0xffff, lsl 0	 // color
     bl      draw_rectangle
-
 
 //~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
   
@@ -711,6 +620,7 @@ main:
     movz    x6, 0x12, lsl 16	   // color
     movk    x6, 0x5d28, lsl 0	   // color
     bl      draw_rectangle
+
 //-------------------------NUMERO 2-------------------------------------
     //Dibuja un rectangulo (contorno) en cartel:
     mov     x0, x20                // framebuffer base
