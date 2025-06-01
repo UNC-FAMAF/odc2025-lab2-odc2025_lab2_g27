@@ -17063,9 +17063,9 @@ Desensamblado de la sección .debug_line:
   bc:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
   c0:	1e1e211e 	.inst	0x1e1e211e ; undefined
   c4:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
-  c8:	1e1e211e 	.inst	0x1e1e211e ; undefined
+  c8:	1e1e221e 	.inst	0x1e1e221e ; undefined
   cc:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
-  d0:	1e1e231e 	.inst	0x1e1e231e ; undefined
+  d0:	1e1e241e 	.inst	0x1e1e241e ; undefined
   d4:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
   d8:	1e1e201e 	.inst	0x1e1e201e ; undefined
   dc:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
@@ -17197,7 +17197,7 @@ Desensamblado de la sección .debug_info:
   44:	00c80000 	.inst	0x00c80000 ; undefined
   48:	00000009 	udf	#9
   4c:	00540000 	.inst	0x00540000 ; undefined
-  50:	005c0000 	.inst	0x005c0000 ; undefined
+  50:	00060000 	.inst	0x00060000 ; undefined
   54:	00480000 	.inst	0x00480000 ; undefined
   58:	80010000 	.inst	0x80010000 ; undefined
 
@@ -17255,29 +17255,9 @@ Desensamblado de la sección .debug_str:
   38:	3732675f 	tbnz	wzr, #6, 4d20 <MMIO_BASE_ALTA+0xe00>
   3c:	656a652f 	fnmls	z15.h, p1/m, z9.h, z10.h
   40:	63696372 	.inst	0x63696372 ; undefined
-  44:	00316f69 	.inst	0x00316f69 ; NYI
+  44:	00326f69 	.inst	0x00326f69 ; NYI
   48:	20554e47 	.inst	0x20554e47 ; undefined
   4c:	32205341 	orr	w1, w26, #0x1fffff
   50:	0032342e 	.inst	0x0032342e ; NYI
   54:	72617473 	.inst	0x72617473 ; undefined
   58:	00732e74 	.inst	0x00732e74 ; undefined
-  5c:	6d6f682f 	ldp	d15, d26, [x1, #-272]
-  60:	756a2f65 	.inst	0x756a2f65 ; undefined
-  64:	6e61696c 	fcvtxn2	v12.4s, v11.2d
-  68:	7365442f 	.inst	0x7365442f ; undefined
-  6c:	706f746b 	adr	x11, deefb <InfLoop+0x4e653>
-  70:	6f6c432f 	mls	v15.8h, v25.8h, v12.h[2]
-  74:	325f656e 	.inst	0x325f656e ; undefined
-  78:	616d5f38 	.inst	0x616d5f38 ; undefined
-  7c:	646f2f79 	.inst	0x646f2f79 ; undefined
-  80:	32303263 	orr	w3, w19, #0x1fff0000
-  84:	616c2d35 	.inst	0x616c2d35 ; undefined
-  88:	6f2d3262 	.inst	0x6f2d3262 ; undefined
-  8c:	30326364 	adr	x4, 64cf9 <Set_Palette+0x1ccee>
-  90:	6c5f3532 	ldnp	d18, d13, [x9, #496]
-  94:	5f326261 	.inst	0x5f326261 ; undefined
-  98:	2f373267 	.inst	0x2f373267 ; undefined
-  9c:	72656a65 	.inst	0x72656a65 ; undefined
-  a0:	69636963 	ldpsw	x3, x26, [x11, #-232]
-  a4:	Address 0xa4 is out of bounds.
-
