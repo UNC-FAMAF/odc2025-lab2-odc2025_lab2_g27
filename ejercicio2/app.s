@@ -104,7 +104,7 @@ fin_fila_t:
 ret_triangle:
     br x30
 
-//----------------------------------FUNCION PINAR CIRCULO--------------------------
+//----------------------------------FUNCION PINTAR CIRCULO--------------------------
 //Pinta un circulo dentro del framebuffer. Se puede elegir la posicion del centro, el radio de la figura y el color.
 draw_circle:
     // x0 = fb, x1 = screen_width, x2 = cx, x3 = cy, x4 = r, x5 = color
@@ -158,11 +158,34 @@ next_y_c:
 ret_circle:
     br x30
 
-main:
-//--------------------------------SUELO VERDE--------------------------------------------
-	// x0 contiene la direccion base del framebuffer
- 	mov 	x20, x0				    // Guarda la dirección base del framebuffer en x20
+//--------------------------------FUNCION TIMER ----------------------------------------------
+// NOTE:
+// Espera un rato
+timer:
+    MOV     X16, #0                   // Inicializar X16 a 0
 
+                                     // Cargar <numero> en X17 usando múltiples instrucciones (no se cuánto)
+    MOVZ    X17, #0xF, LSL #16       // Cargar los bits superiores
+    MOVK    X17, #0xFFFF, LSL #0     // Cargar los bits inferiores
+    LSL     X17, X17, 5
+
+
+
+    seguir_durmiendo:
+	CMP     X16, X17                // Comparar X16 con X17
+	B.EQ    dejar_de_dormir         // Si X16 es igual a X17, saltar a dejar_de_dormir
+	ADD     X16, X16, #1            // Incrementar X16 en 1
+	B       seguir_durmiendo        // Volver a seguir_durmiendo
+
+    dejar_de_dormir:
+    br      x30                     // Retornar
+main:
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FRAME 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//--------------------------------SUELO VERDE--------------------------------------------
+	                                // x0 contiene la direccion base del framebuffer
+ 	mov 	x20, x0				    // Guarda la dirección base del framebuffer en x20
 	movz 	x10, 0x12, lsl 16       // color
 	movk 	x10, 0x5405, lsl 00     // color
 	bl 		fill_framebuffer
@@ -240,6 +263,16 @@ main:
     movz    x5, 0x26, lsl 16		// Color 
     movk    x5, 0x2525, lsl 0		// Color
     bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CIRCULO AMARILLO (SOL)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ 
+   // Dibuja círculo	
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #140                     // coordenada x (centro x)
+    mov     x3, #190                     // coordenada y (centro y)
+    mov     x4, #30                      // radio 
+    movz    x5, 0xFF, lsl 16             // color
+    movk    x5, 0xF300, lsl 0            // color
+    bl      draw_circle                  // dibuja
 
 //-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
     // Dibuja triángulo
@@ -371,14 +404,14 @@ main:
     bl      draw_circle                  // dibuja
 
     // Dibuja triángulo 9
-    mov     x0, x20			 // framebuffer base
-    mov     x1, #SCREEN_WIDTH		 // Ancho de pantalla
-    mov     x2, #400		         // x0: columna del vértice superior del triángulo
-    mov     x3, #10		         // y0: fila del vértice superior
-    mov     x4, #2			 // Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		 // Color 
-    movk    x5, 0xffff, lsl 0		 // Color
-    bl      draw_triangle                // dibuja
+    mov     x0, x20			          // framebuffer base
+    mov     x1, #SCREEN_WIDTH		  // Ancho de pantalla
+    mov     x2, #400		          // x0: columna del vértice superior del triángulo
+    mov     x3, #10		              // y0: fila del vértice superior
+    mov     x4, #2			          // Altura del triángulo (en píxeles)
+    movz    x5, 0xff, lsl 16		  // Color 
+    movk    x5, 0xffff, lsl 0		  // Color
+    bl      draw_triangle             // dibuja
     
     //Dibuja triangulo 10
     mov     x0, x20                      // framebuffer base

@@ -17010,6 +17010,11 @@ Desensamblado de la sección .text:
    908a8:	14000000 	b	908a8 <InfLoop>
 	...
 
+Desensamblado de la sección .bss:
+
+00000000001108ac <__bss_end-0x4>:
+  1108ac:	00000000 	udf	#0
+
 Desensamblado de la sección .debug_line:
 
 0000000000000000 <.debug_line>:
@@ -17172,7 +17177,7 @@ Desensamblado de la sección .debug_line:
  270:	1e1e1e1e 	.inst	0x1e1e1e1e ; undefined
  274:	021e1e1e 	.inst	0x021e1e1e ; undefined
  278:	0001809c 	.inst	0x0001809c ; undefined
- 27c:	Address 0x27c is out of bounds.
+ 27c:	La dirección 0x000000000000027c está fuera de los límites.
 
 
 Desensamblado de la sección .debug_info:
@@ -17279,5 +17284,5 @@ Desensamblado de la sección .debug_str:
   98:	2f373267 	.inst	0x2f373267 ; undefined
   9c:	72656a65 	.inst	0x72656a65 ; undefined
   a0:	69636963 	ldpsw	x3, x26, [x11, #-232]
-  a4:	Address 0xa4 is out of bounds.
+  a4:	La dirección 0x00000000000000a4 está fuera de los límites.
 
