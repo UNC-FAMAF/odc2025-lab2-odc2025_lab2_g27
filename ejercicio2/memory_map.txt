@@ -1,59 +1,61 @@
 
-Configuración de la Memoria
+There are no discarded input sections
 
-Nombre           Origen             Longitud           Atributos
+Memory Configuration
+
+Name             Origin             Length             Attributes
 *default*        0x0000000000000000 0xffffffffffffffff
 
-Guión del enlazador y mapa de memoria
+Linker script and memory map
 
 LOAD app.o
 LOAD start.o
                 0x0000000000080000                . = 0x80000
 
-.text           0x0000000000080000    0x91894
+.text           0x0000000000080000    0x92ab8
  *(.text.boot)
  .text.boot     0x0000000000080000    0x100c8 start.o
                 0x0000000000080000                _start
  *(.text*)
- .text          0x00000000000900c8     0x17cc app.o
+ .text          0x00000000000900c8     0x29f0 app.o
                 0x000000000009021c                main
- .text          0x0000000000091894    0x80000 start.o
+ .text          0x0000000000092ab8    0x80000 start.o
 
-.iplt           0x0000000000111894        0x0
- .iplt          0x0000000000111894        0x0 start.o
+.iplt           0x0000000000112ab8        0x0
+ .iplt          0x0000000000112ab8        0x0 start.o
 
-.rela.dyn       0x0000000000111898        0x0
- .rela.iplt     0x0000000000111898        0x0 start.o
+.rela.dyn       0x0000000000112ab8        0x0
+ .rela.iplt     0x0000000000112ab8        0x0 start.o
  .rela.text.boot
-                0x0000000000111898        0x0 start.o
+                0x0000000000112ab8        0x0 start.o
 
-.data           0x0000000000111894        0x0
- .data          0x0000000000111894        0x0 app.o
- .data          0x0000000000111894        0x0 start.o
+.data           0x0000000000112ab8        0x0
+ .data          0x0000000000112ab8        0x0 app.o
+ .data          0x0000000000112ab8        0x0 start.o
 
-.igot.plt       0x0000000000111898        0x0
- .igot.plt      0x0000000000111898        0x0 start.o
+.igot.plt       0x0000000000112ab8        0x0
+ .igot.plt      0x0000000000112ab8        0x0 start.o
 
-.bss            0x0000000000111894        0x0
+.bss            0x0000000000112ab8        0x0
  *(.bss*)
- .bss           0x0000000000111894        0x0 app.o
- .bss           0x0000000000111894        0x0 start.o
+ .bss           0x0000000000112ab8        0x0 app.o
+ .bss           0x0000000000112ab8        0x0 start.o
 
-.bss            0x0000000000111894        0xc
-                0x00000000001118a0                . = ALIGN (0x10)
- *fill*         0x0000000000111894        0xc 
-                0x00000000001118a0                __bss_start = .
+.bss            0x0000000000112ab8        0x8
+                0x0000000000112ac0                . = ALIGN (0x10)
+ *fill*         0x0000000000112ab8        0x8 
+                0x0000000000112ac0                __bss_start = .
  *(.bss .bss.*)
  *(COMMON)
-                0x00000000001118a0                __bss_end = .
-                0x00000000001118a0                _end = .
+                0x0000000000112ac0                __bss_end = .
+                0x0000000000112ac0                _end = .
                 0x0000000000000000                __bss_size = ((__bss_end - __bss_start) >> 0x3)
 OUTPUT(kernel8.elf elf64-littleaarch64)
 LOAD linker stubs
 
-.debug_line     0x0000000000000000      0x67b
- .debug_line    0x0000000000000000      0x62b app.o
- .debug_line    0x000000000000062b       0x50 start.o
+.debug_line     0x0000000000000000      0xb01
+ .debug_line    0x0000000000000000      0xab1 app.o
+ .debug_line    0x0000000000000ab1       0x50 start.o
 
 .debug_info     0x0000000000000000       0x5c
  .debug_info    0x0000000000000000       0x2e app.o
@@ -69,6 +71,7 @@ LOAD linker stubs
  .debug_aranges
                 0x0000000000000030       0x30 start.o
 
-.debug_str      0x0000000000000000       0xc2
- .debug_str     0x0000000000000000       0x6c app.o
- .debug_str     0x000000000000006c       0x56 start.o
+.debug_str      0x0000000000000000       0x90
+ .debug_str     0x0000000000000000       0x90 app.o
+                                         0x46 (size before relaxing)
+ .debug_str     0x0000000000000090       0x56 start.o
