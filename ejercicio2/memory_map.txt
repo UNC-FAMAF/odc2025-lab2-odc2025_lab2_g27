@@ -12,49 +12,49 @@ LOAD app.o
 LOAD start.o
                 0x0000000000080000                . = 0x80000
 
-.text           0x0000000000080000    0x91db0
+.text           0x0000000000080000    0x94880
  *(.text.boot)
  .text.boot     0x0000000000080000    0x100c8 start.o
                 0x0000000000080000                _start
  *(.text*)
- .text          0x00000000000900c8     0x1ce8 app.o
+ .text          0x00000000000900c8     0x47b8 app.o
                 0x000000000009056c                main
- .text          0x0000000000091db0    0x80000 start.o
+ .text          0x0000000000094880    0x80000 start.o
 
-.iplt           0x0000000000111db0        0x0
- .iplt          0x0000000000111db0        0x0 start.o
+.iplt           0x0000000000114880        0x0
+ .iplt          0x0000000000114880        0x0 app.o
 
-.rela.dyn       0x0000000000111db0        0x0
- .rela.iplt     0x0000000000111db0        0x0 start.o
+.rela.dyn       0x0000000000114880        0x0
+ .rela.iplt     0x0000000000114880        0x0 app.o
  .rela.text.boot
-                0x0000000000111db0        0x0 start.o
+                0x0000000000114880        0x0 app.o
 
-.data           0x0000000000111db0        0x0
- .data          0x0000000000111db0        0x0 app.o
- .data          0x0000000000111db0        0x0 start.o
+.data           0x0000000000114880        0x0
+ .data          0x0000000000114880        0x0 app.o
+ .data          0x0000000000114880        0x0 start.o
 
-.igot.plt       0x0000000000111db0        0x0
- .igot.plt      0x0000000000111db0        0x0 start.o
+.igot.plt       0x0000000000114880        0x0
+ .igot.plt      0x0000000000114880        0x0 app.o
 
-.bss            0x0000000000111db0        0x0
+.bss            0x0000000000114880        0x0
  *(.bss*)
- .bss           0x0000000000111db0        0x0 app.o
- .bss           0x0000000000111db0        0x0 start.o
+ .bss           0x0000000000114880        0x0 app.o
+ .bss           0x0000000000114880        0x0 start.o
 
-.bss            0x0000000000111db0        0x0
-                0x0000000000111db0                . = ALIGN (0x10)
-                0x0000000000111db0                __bss_start = .
+.bss            0x0000000000114880        0x0
+                0x0000000000114880                . = ALIGN (0x10)
+                0x0000000000114880                __bss_start = .
  *(.bss .bss.*)
  *(COMMON)
-                0x0000000000111db0                __bss_end = .
-                0x0000000000111db0                _end = .
+                0x0000000000114880                __bss_end = .
+                0x0000000000114880                _end = .
                 0x0000000000000000                __bss_size = ((__bss_end - __bss_start) >> 0x3)
 OUTPUT(kernel8.elf elf64-littleaarch64)
 LOAD linker stubs
 
-.debug_line     0x0000000000000000      0x7c1
- .debug_line    0x0000000000000000      0x771 app.o
- .debug_line    0x0000000000000771       0x50 start.o
+.debug_line     0x0000000000000000     0x1275
+ .debug_line    0x0000000000000000     0x1225 app.o
+ .debug_line    0x0000000000001225       0x50 start.o
 
 .debug_info     0x0000000000000000       0x5c
  .debug_info    0x0000000000000000       0x2e app.o
