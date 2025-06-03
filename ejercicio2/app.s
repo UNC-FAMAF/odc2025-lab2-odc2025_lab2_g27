@@ -179,6 +179,304 @@ timer:
 
     dejar_de_dormir:
     br      x30                     // Retornar
+
+//------------------------------------FUNCIÓN WORD----------------------------------------
+
+draw_word:
+    //Salvamos punto de retorno:
+    mov     x29, x30
+    //Dibuja la letra O:
+
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #210          	   // x = columna inicial
+    mov     x3, #185               // y = fila inicial
+    mov     x4, #20                // ancho del rectangulo
+    mov     x5, #30    	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #215         	   // x = columna inicial
+    mov     x3, #190               // y = fila inicial
+    mov     x4, #10                // ancho del rectangulo
+    mov     x5, #20    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja la letra d:
+
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #235          	   // x = columna inicial
+    mov     x3, #198               // y = fila inicial
+    mov     x4, #17                // ancho del rectangulo
+    mov     x5, #17    	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #239          	   // x = columna inicial
+    mov     x3, #202               // y = fila inicial
+    mov     x4, #9                 // ancho del rectangulo
+    mov     x5, #9   	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (palito) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #247          	   // x = columna inicial
+    mov     x3, #185               // y = fila inicial
+    mov     x4, #5                 // ancho del rectangulo
+    mov     x5, #17   	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja la letra C:
+
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #259         	   // x = columna inicial
+    mov     x3, #185               // y = fila inicial
+    mov     x4, #20                // ancho del rectangulo
+    mov     x5, #30    	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16   	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #264         	   // x = columna inicial
+    mov     x3, #189               // y = fila inicial
+    mov     x4, #15                // ancho del rectangulo
+    mov     x5, #22    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16 	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja el primer 2:
+
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #290       	       // x = columna inicial
+    mov     x3, #185               // y = fila inicial
+    mov     x4, #20                // ancho del rectangulo
+    mov     x5, #30    	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen sup) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #289     	       // x = columna inicial
+    mov     x3, #191               // y = fila inicial
+    mov     x4, #17                // ancho del rectangulo
+    mov     x5, #7    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen inf) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #295       	       // x = columna inicial
+    mov     x3, #202               // y = fila inicial
+    mov     x4, #17                // ancho del rectangulo
+    mov     x5, #7    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja el número 0:
+
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #314         	   // x = columna inicial
+    mov     x3, #185               // y = fila inicial
+    mov     x4, #20                // ancho del rectangulo
+    mov     x5, #30    	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #319         	   // x = columna inicial
+    mov     x3, #190               // y = fila inicial
+    mov     x4, #10                // ancho del rectangulo
+    mov     x5, #20    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja el segundo 2:
+
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #337      	       // x = columna inicial
+    mov     x3, #185               // y = fila inicial
+    mov     x4, #20                // ancho del rectangulo
+    mov     x5, #30    	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen sup) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #336     	       // x = columna inicial
+    mov     x3, #191               // y = fila inicial
+    mov     x4, #17                // ancho del rectangulo
+    mov     x5, #7    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen inf) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #342       	       // x = columna inicial
+    mov     x3, #202               // y = fila inicial
+    mov     x4, #17                // ancho del rectangulo
+    mov     x5, #7    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja el Número 5:
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #360      	       // x = columna inicial
+    mov     x3, #185               // y = fila inicial
+    mov     x4, #20                // ancho del rectangulo
+    mov     x5, #30    	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen sup) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #359     	       // x = columna inicial
+    mov     x3, #202               // y = fila inicial
+    mov     x4, #17                // ancho del rectangulo
+    mov     x5, #7    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen inf) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #365       	       // x = columna inicial
+    mov     x3, #191               // y = fila inicial
+    mov     x4, #17                // ancho del rectangulo
+    mov     x5, #7    	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja la letra m:
+
+    //Dibuja un rectangulo (contorno) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #383      	       // x = columna inicial
+    mov     x3, #205               // y = fila inicial
+    mov     x4, #12                // ancho del rectangulo
+    mov     x5, #10   	           // alto del rectangulo
+    movz    x6, 0xFF, lsl 16	   // color
+    movk    x6, 0xFFFF, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen izq) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #385      	       // x = columna inicial
+    mov     x3, #209               // y = fila inicial
+    mov     x4, #3                 // ancho del rectangulo
+    mov     x5, #6   	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+    //Dibuja un rectangulo (margen der) en cartel:
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #389      	       // x = columna inicial
+    mov     x3, #209               // y = fila inicial
+    mov     x4, #3                 // ancho del rectangulo
+    mov     x5, #6   	           // alto del rectangulo
+    movz    x6, 0x12, lsl 16	   // color
+    movk    x6, 0x5d28, lsl 0	   // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+
+ret_word:
+    br      x30
+
+//------------------------------------FIN draw_word-----------------------------------------
 main:
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FRAME 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -518,244 +816,8 @@ main:
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     bl timer
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMIENZO FRAME 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1241,244 +1303,7 @@ bl timer
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 5 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bl timer
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INICIO FRAME 6 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1776,244 +1601,8 @@ bl timer
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 6 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     bl timer
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INICIO FRAME 7 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -2307,244 +1896,7 @@ bl timer
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 
 //-------------------------------------FIN FRAME 7----------------------------------------------
     bl      timer
@@ -2737,244 +2089,7 @@ bl timer
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 
 //-------------------------------------FIN FRAME 8----------------------------------------------
     bl      timer
@@ -3167,244 +2282,7 @@ bl timer
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 
 //-------------------------------------FIN FRAME 9----------------------------------------------
     bl      timer
@@ -3597,244 +2475,7 @@ bl timer
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 
 //-------------------------------------FIN FRAME 10----------------------------------------------
     bl      timer
@@ -4027,244 +2668,7 @@ bl timer
     movk    x6, 0x5d28, lsl 0	  // color
     bl      draw_rectangle
 
-//--------------------- LETRA O -----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #210          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #215         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA d ----------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #235          	   // x = columna inicial
-    mov     x3, #198               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #17    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #239          	   // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #9                 // ancho del rectangulo
-    mov     x5, #9   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (palito) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #247          	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #5                 // ancho del rectangulo
-    mov     x5, #17   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-//--------------------------LETRA C-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #259         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16   	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #264         	   // x = columna inicial
-    mov     x3, #189               // y = fila inicial
-    mov     x4, #15                // ancho del rectangulo
-    mov     x5, #22    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16 	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #290       	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #289     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #295       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-----------------------Número 0------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #314         	   // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #319         	   // x = columna inicial
-    mov     x3, #190               // y = fila inicial
-    mov     x4, #10                // ancho del rectangulo
-    mov     x5, #20    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 2-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #337      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #336     	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #342       	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//-------------------------NUMERO 5-------------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #360      	       // x = columna inicial
-    mov     x3, #185               // y = fila inicial
-    mov     x4, #20                // ancho del rectangulo
-    mov     x5, #30    	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen sup) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #359     	       // x = columna inicial
-    mov     x3, #202               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen inf) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #365       	       // x = columna inicial
-    mov     x3, #191               // y = fila inicial
-    mov     x4, #17                // ancho del rectangulo
-    mov     x5, #7    	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-//----------------------LETRA M-----------------------------------
-    //Dibuja un rectangulo (contorno) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #383      	       // x = columna inicial
-    mov     x3, #205               // y = fila inicial
-    mov     x4, #12                // ancho del rectangulo
-    mov     x5, #10   	           // alto del rectangulo
-    movz    x6, 0xFF, lsl 16	   // color
-    movk    x6, 0xFFFF, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen izq) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #385      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
-
-    //Dibuja un rectangulo (margen der) en cartel:
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #389      	       // x = columna inicial
-    mov     x3, #209               // y = fila inicial
-    mov     x4, #3                 // ancho del rectangulo
-    mov     x5, #6   	           // alto del rectangulo
-    movz    x6, 0x12, lsl 16	   // color
-    movk    x6, 0x5d28, lsl 0	   // color
-    bl      draw_rectangle
+    bl draw_word
 
 //-------------------------------------FIN FRAME 11----------------------------------------------
     bl      timer
