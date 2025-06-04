@@ -477,6 +477,212 @@ ret_word:
     br      x30
 
 //------------------------------------FIN draw_word-----------------------------------------
+
+//------------------------------------FUNCION CARRETERA---------------------------------------
+
+draw_carretera:
+    //Salvamos punto de retorno:
+    mov     x29, x30 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Dibuja triángulo
+    mov     x0, x20		             // framebuffer base
+    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
+    mov     x2, #320		         // x0: columna del vértice superior del triángulo
+    mov     x3, #242	             // y0: fila del vértice superior
+    mov     x4, #480		         // Altura del triángulo (en píxeles)
+    movz    x5, 0x26, lsl 16         // Color 
+    movk    x5, 0x2525, lsl 0        // Color
+    bl      draw_triangle 
+
+    mov     x30, x29
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Dibuja triángulo
+    mov     x0, x20			        // framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #280		        // x0: columna del vértice superior del triángulo
+    mov     x3, #240			    // y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0x26, lsl 16		// Color 
+    movk    x5, 0x2525, lsl 0		// Color
+    bl      draw_triangle
+
+    mov     x30, x29
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Dibuja triángulo
+    mov     x0, x20			        // framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #310			    // x0: columna del vértice superior del triángulo
+    mov     x3, #241     	        // y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0xff, lsl 16		// Color 
+    movk    x5, 0xffff, lsl 0		// Color
+    bl      draw_triangle
+    
+    mov     x30, x29
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Dibuja triángulo
+    mov     x0, x20		            // framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #290			    // x0: columna del vértice superior del triángulo
+    mov     x3, #241	            // y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0xff, lsl 16		// Color 
+    movk    x5, 0xffff, lsl 0		// Color
+    bl      draw_triangle
+
+    mov     x30, x29
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Dibuja triángulo
+    mov     x0, x20		            // framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #300			    // x0: columna del vértice superior del triángulo
+    mov     x3, #238				// y0: fila del vértice superior
+    mov     x4, #480            	// Altura del triángulo (en píxeles)
+    movz    x5, 0x26, lsl 16		// Color 
+    movk    x5, 0x2525, lsl 0		// Color
+    bl      draw_triangle
+
+    mov     x30, x29
+    ret_carretera:
+    br      x30
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN DIBUJAR CARRETERA~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~FUNCION MONTANIAS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   
+   draw_montanias:
+    //Salvamos punto de retorno:
+    mov     x29, x30 
+//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
+// Dibuja triángulo
+    mov     x0, x20					// framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #100				// x0: columna del vértice superior del triángulo
+    mov     x3, #100				// y0: fila del vértice superior
+    mov     x4, #150				// Altura del triángulo (en píxeles)
+    movz    x5, 0x91, lsl 16		// Color 
+    movk    x5, 0x7506, lsl 0		// Color
+    bl      draw_triangle
+    
+    mov     x30, x29
+
+//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
+    // Dibuja triángulo
+    mov     x0, x20					// framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #400				// x0: columna del vértice superior del triángulo
+    mov     x3, #100				// y0: fila del vértice superior
+    mov     x4, #150				// Altura del triángulo (en píxeles)
+    movz    x5, 0x69, lsl 16		// Color 
+    movk    x5, 0x4720, lsl 0		// Color
+    bl      draw_triangle 
+    
+    mov     x30, x29
+
+//-------------------TRIANGULO MONTANA DER-------------------------------------
+    // Dibuja triángulo
+    mov     x0, x20					// framebuffer base
+    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
+    mov     x2, #550				// x0: columna del vértice superior del triángulo
+    mov     x3, #100				// y0: fila del vértice superior
+    mov     x4, #150				// Altura del triángulo (en píxeles)
+    movz    x5, 0x91, lsl 16		// Color 
+    movk    x5, 0x7506, lsl 0		// Color
+    bl      draw_triangle  
+    
+    mov     x30, x29
+    ret_montanias:
+    br      x30
+    
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~FIN DIBUJAR MONATAÑA~~~~~~~~~~~~~~~~~~~ 
+
+//----------------------------FUNCION CARTEL---------------------------
+    
+    draw_cartel:
+    //Salvamos punto de retorno:
+    mov     x29, x30 
+//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
+
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #140             // x = columna inicial
+    mov     x3, #180             // y = fila inicial
+    mov     x4, #15              // ancho del rectangulo
+    mov     x5, #180          	 // alto del rectangulo
+    movz    x6, 0x56, lsl 16	 // color
+    movk    x6, 0x5757, lsl 0	 // color
+    bl      draw_rectangle
+    
+    mov     x30, x29
+
+//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
+
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #140             // x = columna inicial
+    mov     x3, #180             // y = fila inicial
+    mov     x4, #300             // ancho del rectangulo
+    mov     x5, #15         	 // alto del rectangulo
+    movz    x6, 0x56, lsl 16	 // color
+    movk    x6, 0x5757, lsl 0	 // color
+    bl      draw_rectangle 
+    
+    mov     x30, x29
+
+//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
+
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #440             // x = columna inicial
+    mov     x3, #180             // y = fila inicial
+    mov     x4, #15              // ancho del rectangulo
+    mov     x5, #180          	 // alto del rectangulo
+    movz    x6, 0x56, lsl 16	 // color
+    movk    x6, 0x5757, lsl 0	 // color
+    bl      draw_rectangle
+    
+    mov     x30, x29
+
+//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
+  
+    // Dibuja rectángulo
+    mov     x0, x20              // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #196         	 // x = columna inicial
+    mov     x3, #165         	 // y = fila inicial
+    mov     x4, #208             // ancho del rectangulo
+    mov     x5, #75       	     // alto del rectangulo
+    movz    x6, 0xff, lsl 16	 // color
+    movk    x6, 0xffff, lsl 0	 // color
+    bl      draw_rectangle 
+    
+    mov     x30, x29
+
+//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
+  
+    // Dibuja rectángulo
+    mov     x0, x20                // framebuffer base
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #200          	  // x = columna inicial
+    mov     x3, #168              // y = fila inicial
+    mov     x4, #200              // ancho del rectangulo
+    mov     x5, #70     	      // alto del rectangulo
+    movz    x6, 0x12, lsl 16	  // color
+    movk    x6, 0x5d28, lsl 0	  // color
+    bl      draw_rectangle
+
+    mov     x30, x29
+    ret_cartel:
+    br      x30
+//-------------------------------------FIN DIBUJAR CARTEL---------------------------
+
 main:
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FRAME 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -500,67 +706,10 @@ main:
     movz    x6, 0x00, lsl 16	 // color
     movk    x6, 0x1028, lsl 0	 // color
     bl      draw_rectangle
-    
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+    bl draw_carretera  
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CIRCULO AMARILLO (SOL)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ 
    // Dibuja círculo	
     mov     x0, x20                      // framebuffer base
@@ -572,38 +721,8 @@ main:
     movk    x5, 0xF300, lsl 0            // color
     bl      draw_circle                  // dibuja
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x69, lsl 16		// Color 
-    movk    x5, 0x4720, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
+//------------------------------- MONTAÑA-----------------------------------
+    bl draw_montanias
 
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
@@ -751,71 +870,8 @@ main:
     movk    x5, 0xffff, lsl 0             // color
     bl      draw_triangle                 // dibuja
 
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1079,66 +1135,9 @@ bl timer
     movk    x6, 0x3467, lsl 0	 // color
     bl      draw_rectangle
     
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CIRCULO AMARILLO (SOL)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Dibuja círculo	
     mov     x0, x20                      // framebuffer base
@@ -1150,39 +1149,9 @@ bl timer
     movk    x5, 0xF300, lsl 0            // color
     bl      draw_circle                  // dibuja
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x69, lsl 16		// Color 
-    movk    x5, 0x4720, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
+//---------------------------- MONTAÑAS-----------------------------------
+    bl draw_montanias
+    
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
     // Dibuja círculo	
@@ -1239,71 +1208,8 @@ bl timer
     movk    x5, 0xD3F7, lsl 0            // color
     bl      draw_circle                  // dibuja
 
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 5 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bl timer
@@ -1326,66 +1232,9 @@ bl timer
     movz    x6, 0x18, lsl 16	 // color
     movk    x6, 0x58A6, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -1397,41 +1246,9 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x69, lsl 16		// Color 
-    movk    x5, 0x4720, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-
-
+//------------------- MONTAÑAS-----------------------------------
+    bl draw_montanias
+    
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
     // Dibuja círculo	
@@ -1537,71 +1354,9 @@ bl timer
     movz    x5, 0x6D, lsl 16              // color
     movk    x5, 0xA7E7, lsl 0             // color
     bl      draw_triangle                 // dibuja
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
 
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 6 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1625,66 +1380,9 @@ bl timer
     movz    x6, 0x17, lsl 16	 // color
     movk    x6, 0x5DB7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -1696,39 +1394,9 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
+//--------------------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
+    
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
     // Dibuja círculo	
@@ -1832,71 +1500,8 @@ bl timer
     movk    x5, 0x7CE7, lsl 0             // color
     bl      draw_triangle                 // dibuja
 
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 7----------------------------------------------
@@ -1921,66 +1526,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -1992,104 +1540,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 8----------------------------------------------
@@ -2114,66 +1569,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -2185,104 +1583,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+   bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 9----------------------------------------------
@@ -2307,66 +1612,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -2378,104 +1626,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS -----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 10----------------------------------------------
@@ -2500,7 +1655,7 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Dibuja triángulo
     mov     x0, x20		             // framebuffer base
@@ -2512,54 +1667,9 @@ bl timer
     movk    x5, 0x2525, lsl 0        // Color
     bl      draw_triangle
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -2571,104 +1681,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//------------------- MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 11----------------------------------------------
@@ -2693,66 +1710,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -2764,104 +1724,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//------------------- MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 12----------------------------------------------
@@ -2886,66 +1753,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+   
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -2957,104 +1767,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//------------------- MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 13------------------------------------------   
@@ -3079,66 +1796,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -3150,104 +1810,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 14------------------------------------------
@@ -3272,66 +1839,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -3343,104 +1853,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 15------------------------------------------
@@ -3466,66 +1883,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -3537,104 +1897,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 16------------------------------------------
@@ -3660,66 +1927,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -3731,104 +1941,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 17 (reflejo 15)------------------------------------------
@@ -3853,66 +1970,9 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -3924,104 +1984,11 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+   bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 18-(reflejo 14)-----------------------------------------
@@ -4047,66 +2014,9 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -4118,104 +2028,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 19(reflejo 13)------------------------------------------
@@ -4252,54 +2069,9 @@ bl      timer
     movk    x5, 0x2525, lsl 0        // Color
     bl      draw_triangle
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+   
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -4311,104 +2083,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 20(reflejo 12)--------------------------------------------
@@ -4434,66 +2113,9 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -4505,104 +2127,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//------------------- MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 21(reflejo 11)----------------------------------------------
@@ -4627,66 +2156,9 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -4698,104 +2170,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 22(reflejo 10)--------------------------------------------
@@ -4821,66 +2200,9 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+   
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -4892,104 +2214,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
+   
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 23 (reflejo 9)--------------------------------------------
@@ -5015,66 +2244,9 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -5086,104 +2258,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 24(reflejo 8)-------------------------------------------
@@ -5209,66 +2288,9 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -5280,104 +2302,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 25---------------------------------
@@ -5403,66 +2332,9 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -5474,104 +2346,11 @@ bl      timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl      draw_word
 
 //-------------------------------------FIN FRAME 26---------------------------------
@@ -5595,99 +2374,11 @@ bl      timer
     movz    x6, 0x17, lsl 16	 // color
     movk    x6, 0x5DB7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
 
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x9B, lsl 16		// Color 
-    movk    x5, 0x7D07, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x7A, lsl 16		// Color 
-    movk    x5, 0x6030, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
 
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
@@ -5792,71 +2483,8 @@ bl      timer
     movk    x5, 0x7CE7, lsl 0             // color
     bl      draw_triangle                 // dibuja
 
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //-------------------------------------FIN FRAME 27----------------------------------------------
@@ -5881,67 +2509,9 @@ bl      timer
     movz    x6, 0x18, lsl 16	 // color
     movk    x6, 0x58A6, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl draw_carretera
+    
 //-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
     // Dibuja triángulo
     mov     x0, x20					// framebuffer base
@@ -5953,30 +2523,9 @@ bl      timer
     movk    x5, 0x7506, lsl 0		// Color
     bl      draw_triangle
 
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x69, lsl 16		// Color 
-    movk    x5, 0x4720, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-
-
+//-------------------MONTAÑAS------------------------------------
+    bl draw_montanias
+    
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
     // Dibuja círculo	
@@ -5990,8 +2539,6 @@ bl      timer
     bl      draw_circle                 // dibuja 
     
 //------------------------------ESTRELLAS BLANCAS-----------------------------------------
-    
-    //Nota sobre los números : el número al lado de la explicacion de lo que hace el codigo corresponde al orden de las estrellas contadas de izquierda a derecha, esto se hizo para ubicarlas de forma mas sencilla en el QEMU 
    
     // Dibuja triangulo 1
     mov     x0, x20                     // framebuffer base
@@ -6082,71 +2629,9 @@ bl      timer
     movz    x5, 0x6D, lsl 16              // color
     movk    x5, 0xA7E7, lsl 0             // color
     bl      draw_triangle                 // dibuja
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
 
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 28 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -6172,66 +2657,9 @@ bl      timer
     movk    x6, 0x3467, lsl 0	 // color
     bl      draw_rectangle
     
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #280		        // x0: columna del vértice superior del triángulo
-    mov     x3, #240			    // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
-
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20			        // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #310			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241     	        // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #290			    // x0: columna del vértice superior del triángulo
-    mov     x3, #241	            // y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0xff, lsl 16		// Color 
-    movk    x5, 0xffff, lsl 0		// Color
-    bl      draw_triangle
-
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		            // framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #300			    // x0: columna del vértice superior del triángulo
-    mov     x3, #238				// y0: fila del vértice superior
-    mov     x4, #480            	// Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16		// Color 
-    movk    x5, 0x2525, lsl 0		// Color
-    bl      draw_triangle
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   bl draw_carretera
+  
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CIRCULO AMARILLO (SOL)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // Dibuja círculo	
     mov     x0, x20                      // framebuffer base
@@ -6243,39 +2671,9 @@ bl      timer
     movk    x5, 0xF300, lsl 0            // color
     bl      draw_circle                  // dibuja
 
-//-------------------TRIANGULO MONTAÑA IZQ-----------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #100				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTAÑA MEDIO------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #400				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x69, lsl 16		// Color 
-    movk    x5, 0x4720, lsl 0		// Color
-    bl      draw_triangle
-
-//-------------------TRIANGULO MONTANA DER-------------------------------------
-    // Dibuja triángulo
-    mov     x0, x20					// framebuffer base
-    mov     x1, #SCREEN_WIDTH		// Ancho de pantalla
-    mov     x2, #550				// x0: columna del vértice superior del triángulo
-    mov     x3, #100				// y0: fila del vértice superior
-    mov     x4, #150				// Altura del triángulo (en píxeles)
-    movz    x5, 0x91, lsl 16		// Color 
-    movk    x5, 0x7506, lsl 0		// Color
-    bl      draw_triangle
-
+//-------------------MONTAÑAS-----------------------------------
+    bl draw_montanias
+    
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
     // Dibuja círculo	
@@ -6289,8 +2687,6 @@ bl      timer
     bl      draw_circle                 // dibuja 
     
 //------------------------------ESTRELLAS BLANCAS-----------------------------------------
-    
-    //Nota sobre los números : el número al lado de la explicacion de lo que hace el codigo corresponde al orden de las estrellas contadas de izquierda a derecha, esto se hizo para ubicarlas de forma mas sencilla en el QEMU 
     
     // Dibuja triangulo 1
     mov     x0, x20                     // framebuffer base
@@ -6332,71 +2728,8 @@ bl      timer
     movk    x5, 0xD3F7, lsl 0            // color
     bl      draw_circle                  // dibuja
 
-//~~~~~~~~~~ POSTE DERECHO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ SOPORTE DEL POSTE  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #140             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #300             // ancho del rectangulo
-    mov     x5, #15         	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ POSTE IZQUIERDO  ~~~~~~~~~~~~~
-
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #440             // x = columna inicial
-    mov     x3, #180             // y = fila inicial
-    mov     x4, #15              // ancho del rectangulo
-    mov     x5, #180          	 // alto del rectangulo
-    movz    x6, 0x56, lsl 16	 // color
-    movk    x6, 0x5757, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20              // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #196         	 // x = columna inicial
-    mov     x3, #165         	 // y = fila inicial
-    mov     x4, #208             // ancho del rectangulo
-    mov     x5, #75       	     // alto del rectangulo
-    movz    x6, 0xff, lsl 16	 // color
-    movk    x6, 0xffff, lsl 0	 // color
-    bl      draw_rectangle
-
-//~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~
-  
-    // Dibuja rectángulo
-    mov     x0, x20                // framebuffer base
-    mov     x1, #SCREEN_WIDTH
-    mov     x2, #200          	  // x = columna inicial
-    mov     x3, #168              // y = fila inicial
-    mov     x4, #200              // ancho del rectangulo
-    mov     x5, #70     	      // alto del rectangulo
-    movz    x6, 0x12, lsl 16	  // color
-    movk    x6, 0x5d28, lsl 0	  // color
-    bl      draw_rectangle
-
+//---------------CARTEL DE RUTA-------------------------
+    bl draw_cartel
     bl draw_word
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 29 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bl timer
@@ -6603,8 +2936,8 @@ bl timer
     mov     x2, #10                     // coordenada x
     mov     x3, #10                     // coordenada y
     mov     x4, #2                      // tamaño
-    movz    x5, 0x0C, lsl 16            // color
-    movk    x5, 0x3467, lsl 0           // color
+    movz    x5, 0xff, lsl 16            // color
+    movk    x5, 0xffff, lsl 0           // color
     bl      draw_triangle               // dibuja
     
     // Dibuja triangulo 4
@@ -6613,8 +2946,8 @@ bl timer
     mov     x2, #200                    // coordenada x
     mov     x3, #40                     // coordenada y
     mov     x4, #2                      // tamaño
-    movz    x5, 0x0C, lsl 16            // color
-    movk    x5, 0x3467, lsl 0           // color
+    movz    x5, 0xff, lsl 16            // color
+    movk    x5, 0xffff, lsl 0           // color
     bl      draw_triangle               // dibuja
     
     // Dibuja triangulo 7
@@ -6623,8 +2956,8 @@ bl timer
     mov     x2, #320                     // coordenada x
     mov     x3, #27                      // coordenada y
     mov     x4, #2                       // tamaño
-    movz    x5, 0x0C, lsl 16             // color
-    movk    x5, 0x3467, lsl 0            // color
+    movz    x5, 0xff, lsl 16             // color
+    movk    x5, 0xffff, lsl 0            // color
     bl      draw_triangle                // dibuja
     
     // Dibuja circulo 11
@@ -6633,8 +2966,8 @@ bl timer
     mov     x2, #490                     // coordenada x (centro x)
     mov     x3, #95                      // coordenada y (centro y)
     mov     x4, #1                       // radio 
-    movz    x5, 0x0C, lsl 16             // color
-    movk    x5, 0x3467, lsl 0            // color
+    movz    x5, 0xff, lsl 16             // color
+    movk    x5, 0xffff, lsl 0            // color
     bl      draw_circle                  // dibuja
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 32 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
