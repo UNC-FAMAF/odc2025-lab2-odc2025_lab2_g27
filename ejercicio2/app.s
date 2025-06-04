@@ -681,20 +681,55 @@ draw_carretera:
     mov     x30, x29
     ret_cartel:
     br      x30
-//-------------------------------------FIN DIBUJAR CARTEL---------------------------
+//------------------------------- FIN DIBUJAR CARTEL ---------------------------
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCION NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    draw_cloud:
+    // Guardar registros que vamos a usar
+    mov x29 , x30
+    stp     x6, x7, [sp, #-16]!
+
+    // Primer círculo
+    mov     x6, x2              // x_centro
+    mov     x7, x4              // color
+    mov     x5, x7
+    mov     x2, x6              // x
+    mov     x3, x3              // y
+    mov     x4, #20             // radio
+    bl      draw_circle
+    mov x30 , x29
+    // Segundo círculo
+    add     x6, x6, #45        // x + 25
+    mov     x5, x5
+    mov     x2, x6
+    mov     x3, x3
+    mov     x4, #23
+    bl      draw_circle
+
+    mov x30 , x29
+    // Tercer círculo
+    add     x6, x6, #47         // x + 25 + 22 = x + 47
+    mov     x5, x5
+    mov     x2, x6
+    mov     x3, x3
+    mov     x4, #18
+    bl      draw_circle
+    mov x30 , x29
+    // Restaurar registros
+    ldp     x6, x7, [sp], #16
+    br x30
 
 main:
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FRAME 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FRAME 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-//--------------------------------SUELO VERDE--------------------------------------------
+//-------------------------------- SUELO VERDE --------------------------------------------
 	                                // x0 contiene la direccion base del framebuffer
  	mov 	x20, x0				    // Guarda la dirección base del framebuffer en x20
 	movz 	x10, 0x12, lsl 16       // color
 	movk 	x10, 0x5405, lsl 00     // color
 	bl 		fill_framebuffer
 
-//-------------------------------RECTANGULO CIELO AZUL-----------------------------------------
+//------------------------------- RECTANGULO CIELO AZUL---------------------------------------
  
     // Dibuja rectángulo
     mov     x0, x20              // framebuffer base
@@ -707,10 +742,10 @@ main:
     movk    x6, 0x1028, lsl 0	 // color
     bl      draw_rectangle
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     bl draw_carretera  
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CIRCULO AMARILLO (SOL)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~+ 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CIRCULO AMARILLO (SOL)~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
    // Dibuja círculo	
     mov     x0, x20                      // framebuffer base
     mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
@@ -736,9 +771,7 @@ main:
     movk    x5, 0xFFFF, lsl 0           // color
     bl      draw_circle                 // dibuja 
     
-//------------------------------ESTRELLAS BLANCAS-----------------------------------------
-    
-//Nota sobre los números : el número al lado de la explicacion de lo que hace el codigo corresponde al orden de las estrellas contadas de izquierda a derecha, esto se hizo para ubicarlas de forma mas sencilla en el QEMU 
+//------------------------------ ESTRELLAS BLANCAS ----------------------------------------- 
     
     // Dibuja triangulo 1
     mov     x0, x20                     // framebuffer base
@@ -1152,6 +1185,23 @@ bl timer
 //---------------------------- MONTAÑAS-----------------------------------
     bl draw_montanias
     
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #225             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0x23, lsl 16     // color
+    movk    x4, 0x7CE7, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #520             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0x23, lsl 16     // color
+    movk    x4, 0x7CE7, lsl 0
+    bl      draw_cloud
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
     // Dibuja círculo	
@@ -1165,8 +1215,6 @@ bl timer
     bl      draw_circle                 // dibuja 
     
 //------------------------------ESTRELLAS BLANCAS-----------------------------------------
-    
-    //Nota sobre los números : el número al lado de la explicacion de lo que hace el codigo corresponde al orden de las estrellas contadas de izquierda a derecha, esto se hizo para ubicarlas de forma mas sencilla en el QEMU 
     
     // Dibuja triangulo 1
     mov     x0, x20                     // framebuffer base
@@ -1232,6 +1280,7 @@ bl timer
     movz    x6, 0x18, lsl 16	 // color
     movk    x6, 0x58A6, lsl 0	 // color
     bl      draw_rectangle
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     bl draw_carretera
     
@@ -1246,8 +1295,26 @@ bl timer
     movk    x5, 0xF700, lsl 0           // color
     bl      draw_circle                 // dibuja 
 
-//------------------- MONTAÑAS-----------------------------------
+//---------------------------- MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #235             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0x6D, lsl 16     // color
+    movk    x4, 0xA7E7, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #530             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0x6D, lsl 16     // color
+    movk    x4, 0xA7E7, lsl 0
+    bl      draw_cloud
     
 //--------------------------CIRCULO BLANCO LUNA---------------------------------------
     
@@ -1261,9 +1328,7 @@ bl timer
     movk    x5, 0xA7EF, lsl 0           // color
     bl      draw_circle                 // dibuja 
     
-//------------------------------ESTRELLAS BLANCAS-----------------------------------------
-    
-    //Nota sobre los números : el número al lado de la explicacion de lo que hace el codigo corresponde al orden de las estrellas contadas de izquierda a derecha, esto se hizo para ubicarlas de forma mas sencilla en el QEMU 
+//------------------------------ESTRELLAS BLANCAS----------------------------------------- 
    
     // Dibuja triangulo 1
     mov     x0, x20                     // framebuffer base
@@ -1362,14 +1427,15 @@ bl timer
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 6 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     bl timer
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INICIO FRAME 7 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//--------------------------------SUELO VERDE--------------------------------------------
+
+//--------------------------------- SUELO VERDE --------------------------------------------
 	                                // x0 contiene la direccion base del framebuffer
  	mov 	x20, x0				    // Guarda la dirección base del framebuffer en x20
 	movz 	x10, 0x1B, lsl 16       // color
 	movk 	x10, 0x9E01, lsl 00     // color
 	bl 		fill_framebuffer
 //-------------------------------RECTANGULO CIELO AZUL-----------------------------------------
- 
+
     // Dibuja rectángulo
     mov     x0, x20              // framebuffer base
     mov     x1, #SCREEN_WIDTH
@@ -1500,6 +1566,24 @@ bl timer
     movk    x5, 0x7CE7, lsl 0             // color
     bl      draw_triangle                 // dibuja
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #245             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xB6, lsl 16     // color
+    movk    x4, 0xD3F7, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #540             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xB6, lsl 16     // color
+    movk    x4, 0xD3F7, lsl 0
+    bl      draw_cloud
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -1508,7 +1592,7 @@ bl timer
     bl      timer
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INICIO FRAME 8 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//--------------------------------SUELO VERDE--------------------------------------------
+//-------------------------------- SUELO VERDE--------------------------------------------
 	                                // x0 contiene la direccion base del framebuffer
  	mov 	x20, x0				    // Guarda la dirección base del framebuffer en x20
 	movz 	x10, 0x1E, lsl 16       // color
@@ -1542,6 +1626,24 @@ bl timer
 
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #255             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #550             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -1586,6 +1688,24 @@ bl timer
 //-------------------MONTAÑAS-----------------------------------
    bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #265             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #560             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -1629,6 +1749,24 @@ bl timer
 //-------------------MONTAÑAS -----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #275             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #570             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -1655,17 +1793,6 @@ bl timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    bl draw_carretera
@@ -1683,6 +1810,24 @@ bl timer
 
 //------------------- MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #285             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #580            // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -1727,6 +1872,24 @@ bl timer
 //------------------- MONTAÑAS-----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #295             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #590            // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -1755,7 +1918,6 @@ bl timer
     bl      draw_rectangle
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     bl draw_carretera
-   
 //--------------------------CIRCULO AMARILLO SOL---------------------------------------
     // Dibuja círculo	
     mov     x0, x20                     // framebuffer base
@@ -1769,6 +1931,24 @@ bl timer
 
 //------------------- MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #305             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #600             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -1813,6 +1993,25 @@ bl timer
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #315             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #610             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -1855,6 +2054,25 @@ bl timer
 
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #325             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #620             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -1900,6 +2118,25 @@ bl timer
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #335             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #630            // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -1944,6 +2181,25 @@ bl timer
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #345             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #640             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -1986,6 +2242,25 @@ bl timer
 
 //-------------------MONTAÑAS-----------------------------------
    bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #355             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #650             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -2031,6 +2306,25 @@ bl      timer
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #365             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #660             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -2057,17 +2351,6 @@ bl      timer
     movz    x6, 0x23, lsl 16	 // color
     movk    x6, 0x7CE7, lsl 0	 // color
     bl      draw_rectangle
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Dibuja triángulo
-    mov     x0, x20		             // framebuffer base
-    mov     x1, #SCREEN_WIDTH        // Ancho de pantalla
-    mov     x2, #320		         // x0: columna del vértice superior del triángulo
-    mov     x3, #242	             // y0: fila del vértice superior
-    mov     x4, #480		         // Altura del triángulo (en píxeles)
-    movz    x5, 0x26, lsl 16         // Color 
-    movk    x5, 0x2525, lsl 0        // Color
-    bl      draw_triangle
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     bl draw_carretera
@@ -2085,6 +2368,24 @@ bl      timer
 
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #375             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #670             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -2130,6 +2431,24 @@ bl      timer
 //------------------- MONTAÑAS-----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #385             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #680             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -2172,6 +2491,24 @@ bl      timer
 
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #395             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #690             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -2216,6 +2553,24 @@ bl      timer
 
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #405             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #700             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
    
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -2261,6 +2616,24 @@ bl      timer
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #415             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #710            // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -2304,6 +2677,23 @@ bl      timer
 
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #425             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #720             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -2348,6 +2738,24 @@ bl      timer
 
 //-------------------MONTAÑAS-----------------------------------
     bl draw_montanias
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #435             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #730             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xFF, lsl 16     // color
+    movk    x4, 0xFFFF, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -2482,6 +2890,24 @@ bl      timer
     movz    x5, 0x23, lsl 16              // color
     movk    x5, 0x7CE7, lsl 0             // color
     bl      draw_triangle                 // dibuja
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #455             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0xB6, lsl 16     // color
+    movk    x4, 0xD3F7, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #750             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0xB6, lsl 16     // color
+    movk    x4, 0xD3F7, lsl 0
+    bl      draw_cloud
 
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
@@ -2630,6 +3056,24 @@ bl      timer
     movk    x5, 0xA7E7, lsl 0             // color
     bl      draw_triangle                 // dibuja
 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #465             // pos_x
+    mov     x3, #90              // pos_y
+    movz    x4, 0x6D, lsl 16     // color
+    movk    x4, 0xA7E7, lsl 0
+    bl      draw_cloud
+
+    mov     x0, x20              // framebuffer
+    mov     x1, #SCREEN_WIDTH
+    mov     x2, #760             // pos_x
+    mov     x3, #50              // pos_y
+    movz    x4, 0x6D, lsl 16     // color
+    movk    x4, 0xA7E7, lsl 0
+    bl      draw_cloud
+    
 //---------------CARTEL DE RUTA-------------------------
     bl draw_cartel
     bl draw_word
@@ -2733,7 +3177,6 @@ bl      timer
     bl draw_word
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 29 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 bl timer
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INICIO FRAME 30~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //--------------------------------- ESTRELLAS BLANCAS-----------------------------------------
@@ -2971,6 +3414,243 @@ bl timer
     bl      draw_circle                  // dibuja
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 32 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl timer 
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INICIO FRAME 33 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------- ESTRELLAS BLANCAS-----------------------------------------
+    // Dibuja circulo 2
+    mov     x0, x20                     // framebuffer base
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #45                     // coordenada x (centro x)
+    mov     x3, #105                    // coordenada y (centro y)
+    mov     x4, #1                      // radio 
+    movz    x5, 0xFF, lsl 16            // color
+    movk    x5, 0xFFFF, lsl 0           // color
+    bl      draw_circle                 // dibuja
+    
+    // Dibuja triangulo 3
+    mov     x0, x20                     // framebuffer base 
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #120                    // coordenada x
+    mov     x3, #70                     // coordenada y
+    mov     x4, #2                      // tamaño
+    movz    x5, 0x0C, lsl 16            // color
+    movk    x5, 0x3467, lsl 0           // color
+    bl      draw_triangle               // dibuja
+    
+    // Dibuja triangulo 5
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #250                     // coordenada x
+    mov     x3, #60                      // coordenada y
+    mov     x4, #2                       // tamaño
+    movz    x5, 0xff, lsl 16             // color
+    movk    x5, 0xffff, lsl 0            // color
+    bl      draw_triangle                // dibuja
+    
+    // Dibuja circulo 6
+    mov     x0, x20                     // framebuffer base
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #280                    // coordenada x (centro x)
+    mov     x3, #100                    // coordenada y (centro y)
+    mov     x4, #1                      // radio 
+    movz    x5, 0x0C, lsl 16            // color
+    movk    x5, 0x3467, lsl 0           // color
+    bl      draw_circle                 // dibuja
+
+    // Dibuja Circulo 8
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #360                     // coordenada x (centro x)
+    mov     x3, #100                     // coordenada y (centro y)
+    mov     x4, #1                       // radio 
+    movz    x5, 0xFF, lsl 16             // color
+    movk    x5, 0xFFFF, lsl 0            // color
+    bl      draw_circle                  // dibuja
+
+    // Dibuja triángulo 9
+    mov     x0, x20			          // framebuffer base
+    mov     x1, #SCREEN_WIDTH		  // Ancho de pantalla
+    mov     x2, #400		          // x0: columna del vértice superior del triángulo
+    mov     x3, #10		              // y0: fila del vértice superior
+    mov     x4, #2			          // Altura del triángulo (en píxeles)
+    movz    x5, 0x0C, lsl 16		  // Color 
+    movk    x5, 0x3467, lsl 0		  // Color
+    bl      draw_triangle             // dibuja
+    
+    //Dibuja triangulo 10
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #450                     // coordenada x
+    mov     x3, #60                      // coordenada y
+    mov     x4, #2                       // tamaño
+    movz    x5, 0xff, lsl 16             // color
+    movk    x5, 0xffff, lsl 0            // color
+    bl      draw_triangle                // dibuja
+
+    // Dibuja circulo 12
+    mov     x0, x20                       // framebuffer base
+    mov     x1, #SCREEN_WIDTH             // Ancho de pantalla
+    mov     x2, #520                      // coordenada x (centro x)
+    mov     x3, #30                       // coordenada y (centro y)
+    mov     x4, #1                        // radio 
+    movz    x5, 0x0C, lsl 16              // color
+    movk    x5, 0x3467, lsl 0             // color
+    bl      draw_circle                   // dibuja
+
+    // Dibuja triangulo 13
+    mov     x0, x20                       // framebuffer base
+    mov     x1, #SCREEN_WIDTH             // Ancho de pantalla
+    mov     x2, #570                      // coordenada x
+    mov     x3, #80                       // coordenada y
+    mov     x4, #2                        // tamaño    
+    movz    x5, 0xff, lsl 16              // color
+    movk    x5, 0xffff, lsl 0             // color
+    bl      draw_triangle                 // dibuja
+
+//-------------------------------------FIN FRAME 33----------------------------------------------
+    bl      timer
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ INICIO FRAME 34 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+//------------------------------ESTRELLAS BLANCAS-----------------------------------------
+
+    // Dibuja triangulo 1
+    mov     x0, x20                     // framebuffer base
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #10                     // coordenada x
+    mov     x3, #10                     // coordenada y
+    mov     x4, #2                      // tamaño
+    movz    x5, 0xff, lsl 16            // color
+    movk    x5, 0xffff, lsl 0           // color
+    bl      draw_triangle               // dibuja
+    
+    // Dibuja circulo 2
+    mov     x0, x20                     // framebuffer base
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #45                     // coordenada x (centro x)
+    mov     x3, #105                    // coordenada y (centro y)
+    mov     x4, #1                      // radio 
+    movz    x5, 0x0C, lsl 16            // color
+    movk    x5, 0x3467, lsl 0           // color
+    bl      draw_circle                 // dibuja
+    
+    // Dibuja triangulo 4
+    mov     x0, x20                     // framebuffer base
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #200                    // coordenada x
+    mov     x3, #40                     // coordenada y
+    mov     x4, #2                      // tamaño
+    movz    x5, 0xff, lsl 16            // color
+    movk    x5, 0xffff, lsl 0           // color
+    bl      draw_triangle               // dibuja
+    
+    // Dibuja triangulo 5
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #250                     // coordenada x
+    mov     x3, #60                      // coordenada y
+    mov     x4, #2                       // tamaño
+    movz    x5, 0x0C, lsl 16             // color
+    movk    x5, 0x3467, lsl 0            // color
+    bl      draw_triangle                // dibuja
+    
+    // Dibuja triangulo 7
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #320                     // coordenada x
+    mov     x3, #27                      // coordenada y
+    mov     x4, #2                       // tamaño
+    movz    x5, 0xff, lsl 16             // color
+    movk    x5, 0xffff, lsl 0            // color
+    bl      draw_triangle                // dibuja
+    
+    // Dibuja Circulo 8
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #360                     // coordenada x (centro x)
+    mov     x3, #100                     // coordenada y (centro y)
+    mov     x4, #1                       // radio 
+    movz    x5, 0x0C, lsl 16             // color
+    movk    x5, 0x3467, lsl 0            // color
+    bl      draw_circle                  // dibuja
+    
+    //Dibuja triangulo 10
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #450                     // coordenada x
+    mov     x3, #60                      // coordenada y
+    mov     x4, #2                       // tamaño
+    movz    x5, 0x0C, lsl 16             // color
+    movk    x5, 0x3467, lsl 0            // color
+    bl      draw_triangle                // dibuja
+    
+    // Dibuja circulo 11
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #490                     // coordenada x (centro x)
+    mov     x3, #95                      // coordenada y (centro y)
+    mov     x4, #1                       // radio 
+    movz    x5, 0xFF, lsl 16             // color
+    movk    x5, 0xFFFF, lsl 0            // color
+    bl      draw_circle                  // dibuja
+
+    // Dibuja triangulo 13
+    mov     x0, x20                       // framebuffer base
+    mov     x1, #SCREEN_WIDTH             // Ancho de pantalla
+    mov     x2, #570                      // coordenada x
+    mov     x3, #80                       // coordenada y
+    mov     x4, #2                        // tamaño    
+    movz    x5, 0x0C, lsl 16              // color
+    movk    x5, 0x3467, lsl 0             // color
+    bl      draw_triangle                 // dibuja
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 34 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    bl timer
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMIENZO FRAME 35~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//------------------------------------- ESTRELLAS BLANCAS-----------------------------------------
+    
+    // Dibuja triangulo 1
+    mov     x0, x20                     // framebuffer base
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #10                     // coordenada x
+    mov     x3, #10                     // coordenada y
+    mov     x4, #2                      // tamaño
+    movz    x5, 0xff, lsl 16            // color
+    movk    x5, 0xffff, lsl 0           // color
+    bl      draw_triangle               // dibuja
+    
+    // Dibuja triangulo 4
+    mov     x0, x20                     // framebuffer base
+    mov     x1, #SCREEN_WIDTH           // Ancho de pantalla
+    mov     x2, #200                    // coordenada x
+    mov     x3, #40                     // coordenada y
+    mov     x4, #2                      // tamaño
+    movz    x5, 0xff, lsl 16            // color
+    movk    x5, 0xffff, lsl 0           // color
+    bl      draw_triangle               // dibuja
+    
+    // Dibuja triangulo 7
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #320                     // coordenada x
+    mov     x3, #27                      // coordenada y
+    mov     x4, #2                       // tamaño
+    movz    x5, 0xff, lsl 16             // color
+    movk    x5, 0xffff, lsl 0            // color
+    bl      draw_triangle                // dibuja
+    
+    // Dibuja circulo 11
+    mov     x0, x20                      // framebuffer base
+    mov     x1, #SCREEN_WIDTH            // Ancho de pantalla
+    mov     x2, #490                     // coordenada x (centro x)
+    mov     x3, #95                      // coordenada y (centro y)
+    mov     x4, #1                       // radio 
+    movz    x5, 0xff, lsl 16             // color
+    movk    x5, 0xffff, lsl 0            // color
+    bl      draw_circle                  // dibuja
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN FRAME 35 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     bl timer 
     bl main   
     // Ejemplo de uso de gpios
