@@ -18,4 +18,11 @@ Nuestra animacion consiste en el ciclo del dia, la transicion de noche a dia y v
 
 Justificación instrucciones ARMv8: 
     
-    -Ejercicio 1: se evitó el uso de instrucciones que no pertenecieran a LEGv8. Pero destacamos el uso de la instrucción "ADD x0, x0, #inmediato" que en LEGv8 no funcionaría (se utilizaria la instrucción "ADDI x0, x0, #inmediato" si fuese LEGv8).
+-Ejercicio 1: 
+Se evitó el uso de instrucciones que no pertenecieran a LEGv8. Pero destacamos el uso de la instrucción "ADD x0, x0, #inmediato" que en LEGv8 no funcionaría (se utilizaria la instrucción "ADDI x0, x0, #inmediato" si fuese LEGv8).
+
+-Ejercicio 2: 
+Implementamos en la funcion nubes las siguientes instrucciones:
+STP: Significa "store pair". Esta instrucción almacena dos registros de 64 bits en memoria en una sola operación. 
+SP: Es el registro conocido como el "Stack Pointer" o Puntero de Pila. Su función principal es mantener la dirección de memoria que señala el tope de la pila en un programa en ejecución.
+LDP: Carga un par de registros desde memoria en una sola instrucción.
