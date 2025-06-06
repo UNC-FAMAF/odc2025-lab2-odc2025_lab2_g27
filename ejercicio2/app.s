@@ -35,8 +35,8 @@ fila_loop_r:
     cmp     x7, x5				         // terminamos con las filas?
     b.ge    ret_rectangle		         // si fila actual >= alto del rectangulo, salta a ret_rectangle
 
-	                                     // calcular dirección de inicio de la fila: 
-                                         // offset = ((y + fila) * 640 + x) * 4
+	// calcular dirección de inicio de la fila: 
+    // offset = ((y + fila) * 640 + x) * 4
     add     x8, x3, x7			         // x8 = (y + fila)
     mul     x8, x8, x1			         // x8 = (y + fila) * 640
     add     x8, x8, x2			         // x8 = (y + fila) * 640 + x
@@ -64,7 +64,6 @@ ret_rectangle:
 //Pinta un triangulo dentro del framebuffer. Se puede elegir la posicion del vertice superior, el alto de la figura y el color.
 draw_triangle:
     // x0 = fb, x1 = screen_width, x2 = x0, x3 = y0, x4 = altura, x5 = color
-
     mov     x6, #0				         // fila actual (desde 0 hasta altura - 1)
 
 fila_loop_t:
@@ -86,6 +85,7 @@ fila_loop_t:
 
 	// Bucle para dibujar píxeles en esta fila
     mov     x12, #0				         // contador de píxeles
+
 pix_loop_t:
     cmp     x12, x7
     b.ge    fin_fila_t
@@ -106,7 +106,6 @@ ret_triangle:
 //Pinta un circulo dentro del framebuffer. Se puede elegir la posicion del centro, el radio de la figura y el color.
 draw_circle:
     // x0 = fb, x1 = screen_width, x2 = cx, x3 = cy, x4 = r, x5 = color
-
     sub     x6, x2, x4                   // min_x = centro x - radio r
     add     x7, x2, x4                   // max_x = centro x + radio r
     sub     x8, x3, x4                   // min_y = centro y - radio r
@@ -163,7 +162,7 @@ timer:
     MOV     X16, #0                      // Inicializar X16 a 0
 
     // Cargar <numero> en X17 usando múltiples instrucciones (no se cuánto)
-    MOVZ    X17, #0x55, LSL #16          // Cargar los bits superiores
+    MOVZ    X17, #0x33, LSL #16          // Cargar los bits superiores
     MOVK    X17, #0xAFF, LSL #0          // Cargar los bits inferiores
     LSL     X17, X17, 5
 
@@ -472,13 +471,13 @@ draw_word:
 
 ret_word:
     br      x30
-
 //------------------------------------- FIN draw_word ---------------------------------------------
+
 //------------------------------------- FUNCION CARRETERA -----------------------------------------
 draw_carretera:
     //Salvamos punto de retorno:
     mov     x29, x30 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA DERECHA ) ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------CARRETERA (BASE NEGRA DERECHA ) ---------------------------------
 
     // Dibuja triángulo
     mov     x0, x20		                 // framebuffer base
@@ -491,7 +490,7 @@ draw_carretera:
     bl      draw_triangle 
 
     mov     x30, x29
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BASE NEGRA IZQUIERDA) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//-------------------------------CARRETERA (BASE NEGRA IZQUIERDA) ---------------------------------
 
     // Dibuja triángulo
     mov     x0, x20			             // framebuffer base
@@ -504,7 +503,7 @@ draw_carretera:
     bl      draw_triangle
 
     mov     x30, x29
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO DERECHO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------CARRETERA (BORDE BLANCO DERECHO) ---------------------------------
 
     // Dibuja triángulo
     mov     x0, x20			             // framebuffer base
@@ -517,7 +516,7 @@ draw_carretera:
     bl      draw_triangle
     
     mov     x30, x29
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA (BORDE BLANCO IZQUIERDO) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//-------------------------------- CARRETERA (BORDE BLANCO IZQUIERDO)--------------------------------
 
     // Dibuja triángulo
     mov     x0, x20		                 // framebuffer base
@@ -530,7 +529,7 @@ draw_carretera:
     bl      draw_triangle
 
     mov     x30, x29
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARRETERA NEGRA (CENTRAL) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//------------------------------------ CARRETERA NEGRA (CENTRAL)-------------------------------------
 
     // Dibuja triángulo
     mov     x0, x20		                 // framebuffer base
@@ -545,12 +544,13 @@ draw_carretera:
     mov     x30, x29
     ret_carretera:
     br      x30
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN DIBUJAR CARRETERA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCION MONTANIAS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   draw_montanias:
+//---------------------------------------- FIN DIBUJAR CARRETERA ---------------------------------------
+
+//---------------------------------------- FUNCION MONTAÑAS -------------------------------------------
+draw_montanias:
     //Salvamos punto de retorno:
     mov     x29, x30 
-//------------------------------------- TRIANGULO MONTAÑA IZQ ---------------------------------------------
+//------------------------------------- TRIANGULO MONTAÑA IZQ ------------------------------------------
 // Dibuja triángulo
     mov     x0, x20					     // framebuffer base
     mov     x1, #SCREEN_WIDTH		     // Ancho de pantalla
@@ -563,7 +563,7 @@ draw_carretera:
     
     mov     x30, x29
 
-//------------------------------------- TRIANGULO MONTAÑA MEDIO -----------------------------------------
+//------------------------------------- TRIANGULO MONTAÑA MEDIO ---------------------------------------
     // Dibuja triángulo
     mov     x0, x20					     // framebuffer base
     mov     x1, #SCREEN_WIDTH		     // Ancho de pantalla
@@ -576,7 +576,7 @@ draw_carretera:
     
     mov     x30, x29
 
-//------------------------------------- TRIANGULO MONTANA DER --------------------------------------
+//------------------------------------- TRIANGULO MONTAÑA DER --------------------------------------
     // Dibuja triángulo
     mov     x0, x20					     // framebuffer base
     mov     x1, #SCREEN_WIDTH		     // Ancho de pantalla
@@ -588,15 +588,15 @@ draw_carretera:
     bl      draw_triangle  
     
     mov     x30, x29
-    ret_montanias:
+    ret_montañas:
     br      x30
-    
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FIN DIBUJAR MONATAÑA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+//-------------------------------------- FIN DIBUJAR MONATAÑA--------------------------------------
+
 //------------------------------------- FUNCION CARTEL --------------------------------------------
     draw_cartel:
     //Salvamos punto de retorno:
     mov     x29, x30 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POSTE DERECHO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//------------------------------------- POSTE DERECHO ---------------------------------------------
 
     // Dibuja rectángulo
     mov     x0, x20                      // framebuffer base
@@ -611,7 +611,7 @@ draw_carretera:
     
     mov     x30, x29
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ SOPORTE DEL POSTE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//----------------------------------- SOPORTE DEL POSTE -------------------------------------------
 
     // Dibuja rectángulo
     mov     x0, x20                      // framebuffer base
@@ -626,7 +626,7 @@ draw_carretera:
     
     mov     x30, x29
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ POSTE IZQUIERDO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//--------------------------------------- POSTE IZQUIERDO ---------------------------------------------
 
     // Dibuja rectángulo
     mov     x0, x20                      // framebuffer base
@@ -641,7 +641,7 @@ draw_carretera:
     
     mov     x30, x29
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARTEL BASE BLANCA ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//---------------------------------------CARTEL BASE BLANCA ------------------------------------------
   
     // Dibuja rectángulo
     mov     x0, x20                      // framebuffer base
@@ -656,7 +656,7 @@ draw_carretera:
     
     mov     x30, x29
 
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CARTEL BASE VERDE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//------------------------------------- CARTEL BASE VERDE ---------------------------------------------
   
     // Dibuja rectángulo
     mov     x0, x20                      // framebuffer base
@@ -673,42 +673,45 @@ draw_carretera:
     ret_cartel:
     br      x30
 //------------------------------------- FIN DIBUJAR CARTEL -------------------------------------------
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FUNCION NUBES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+//--------------------------------------- FUNCION NUBES ----------------------------------------------
     draw_cloud:
     // Guardar registros que vamos a usar
-    mov x29 , x30
-    stp     x6, x7, [sp, #-16]!
-
+    mov x29 , x30                       //guarda la posicion del salto
+    stp     x6, x7, [sp, #-16]!         //guarda dos registros en memoria
+    
+    //stp: Significa "store pair". Esta instrucción almacena dos registros de 64 bits en memoria, de manera eficiente, en una sola operación. ,sp es el registro conocido como el "Stack Pointer" o Puntero de Pila. Su función principal es mantener la dirección de memoria que señala el tope de la pila en un programa en ejecución.
+    
     // Primer círculo
-    mov     x6, x2                       // x_centro
+    mov     x6, x2                       // posicion de creacion
     mov     x7, x4                       // color
-    mov     x5, x7
-    mov     x2, x6                       // x
-    mov     x3, x3                       // y
-    mov     x4, #20                      // radio
-    bl      draw_circle
+    mov     x5, x7                       // guarda el color para las siguientes
+    mov     x2, x6                       // coordenada x
+    mov     x3, x3                       // coordenada y
+    mov     x4, #20                      // tamañio del circulo
+    bl      draw_circle                  // dibuja
     mov x30 , x29
     // Segundo círculo
-    add     x6, x6, #45                  // x + 25
-    mov     x5, x5
-    mov     x2, x6
-    mov     x3, x3
-    mov     x4, #23
-    bl      draw_circle
+    add     x6, x6, #45                  // posicion donde comienza a dibujar con respecto al primer circulo
+    mov     x5, x5                       // color
+    mov     x2, x6                       // coordenada x
+    mov     x3, x3                       // coordenada y
+    mov     x4, #23                      // tamaño del circulo
+    bl      draw_circle                  // dibuja
 
-    mov x30 , x29
+    mov x30 , x29                        // guarda el salto anterior
     // Tercer círculo
-    add     x6, x6, #47                  // x + 25 + 22 = x + 47
-    mov     x5, x5
-    mov     x2, x6
-    mov     x3, x3
-    mov     x4, #18
-    bl      draw_circle
-    mov x30 , x29
+    add     x6, x6, #47                  // posicion donde comienza a dibujar con respecto al primer circulo
+    mov     x5, x5                       // color
+    mov     x2, x6                       // coordenada x
+    mov     x3, x3                       // coordenada y
+    mov     x4, #18                      // tamaño del circulo
+    bl      draw_circle                  // dibuja
+    mov x30 , x29                        // guarda el salto anterior
     // Restaurar registros
-    ldp     x6, x7, [sp], #16
-    br x30
+    ldp     x6, x7, [sp], #16            //guarda dos registros en memoria
+    br x30                               //vuelve a donde salto por primera vez
+//------------------------------------- FIN FUNCION NUBES -------------------------------------------
 
 main:
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FRAME 1 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
